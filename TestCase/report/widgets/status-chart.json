@@ -1,0 +1,11 @@
+[ {
+  "uid" : "16358d3af3950a75",
+  "name" : "切换主题",
+  "time" : {
+    "start" : 1659011169043,
+    "stop" : 1659011183884,
+    "duration" : 14841
+  },
+  "status" : "passed",
+  "severity" : "blocker"
+} ]

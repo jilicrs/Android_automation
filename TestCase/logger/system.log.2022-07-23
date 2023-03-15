@@ -1,0 +1,281 @@
+[2022-07-23 10:55:12,721] [INFO] [DESKTOP-GEC281Q][globals.py - line:63] com.xbh.jyjsetting app is start
+[2022-07-23 11:03:19,799] [INFO] [DESKTOP-GEC281Q][globals.py - line:63] com.xbh.jyjsetting app is start
+[2022-07-23 13:42:02,876] [INFO] [DESKTOP-GEC281Q][globals.py - line:63] com.xbh.jyjsetting app is start
+[2022-07-23 13:42:07,139] [INFO] [DESKTOP-GEC281Q][test_case_001.py - line:40] start app success
+[2022-07-23 13:42:36,393] [INFO] [DESKTOP-GEC281Q][test_case_001.py - line:71] case1:Choose universal -- personal is success
+[2022-07-23 14:28:51,785] [INFO] [DESKTOP-GEC281Q][globals.py - line:63] com.xbh.jyjsetting app is start
+[2022-07-23 14:28:55,846] [INFO] [DESKTOP-GEC281Q][test_case_001.py - line:40] start app success
+[2022-07-23 14:28:57,058] [INFO] [DESKTOP-GEC281Q][test_case_001.py - line:71] case1:Choose universal -- personal is success
+[2022-07-23 14:29:05,698] [INFO] [DESKTOP-GEC281Q][screenshot.py - line:31] 
+Screenshot success
+[2022-07-23 14:29:05,749] [INFO] [DESKTOP-GEC281Q][globals.py - line:73] com.xbh.jyjsetting app is stop
+[2022-07-23 14:30:54,178] [INFO] [DESKTOP-GEC281Q][globals.py - line:63] com.xbh.jyjsetting app is start
+[2022-07-23 14:30:57,526] [INFO] [DESKTOP-GEC281Q][test_case_001.py - line:40] start app success
+[2022-07-23 14:31:00,234] [INFO] [DESKTOP-GEC281Q][test_case_001.py - line:71] case1:Choose universal -- personal is success
+[2022-07-23 14:35:22,934] [INFO] [DESKTOP-GEC281Q][globals.py - line:63] com.xbh.jyjsetting app is start
+[2022-07-23 14:35:26,280] [INFO] [DESKTOP-GEC281Q][test_case_001.py - line:40] start app success
+[2022-07-23 14:35:34,144] [INFO] [DESKTOP-GEC281Q][test_case_001.py - line:71] case1:Choose universal -- personal is success
+[2022-07-23 14:36:35,151] [WARNING] [DESKTOP-GEC281Q][api.py - line:40] ('Connection aborted.', ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None)), retrying in 0.5 seconds...
+[2022-07-23 14:36:44,396] [INFO] [DESKTOP-GEC281Q][screenshot.py - line:31] 
+Screenshot success
+[2022-07-23 14:36:44,724] [INFO] [DESKTOP-GEC281Q][globals.py - line:73] com.xbh.jyjsetting app is stop
+[2022-07-23 16:19:33,765] [INFO] [DESKTOP-GEC281Q][globals.py - line:63] com.xbh.jyjsetting app is start
+[2022-07-23 16:19:37,144] [INFO] [DESKTOP-GEC281Q][test_case_001.py - line:40] start app success
+[2022-07-23 16:19:37,983] [INFO] [DESKTOP-GEC281Q][test_case_001.py - line:71] case1:Choose universal -- personal is success
+[2022-07-23 16:20:22,891] [WARNING] [DESKTOP-GEC281Q][api.py - line:40] ('Connection aborted.', ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None)), retrying in 0.5 seconds...
+[2022-07-23 16:20:33,695] [WARNING] [DESKTOP-GEC281Q][api.py - line:40] HTTPConnectionPool(host='127.0.0.1', port=54417): Read timed out., retrying in 0.5 seconds...
+[2022-07-23 16:21:39,565] [WARNING] [DESKTOP-GEC281Q][api.py - line:40] ('Connection aborted.', ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None)), retrying in 0.5 seconds...
+[2022-07-23 16:21:50,348] [WARNING] [DESKTOP-GEC281Q][api.py - line:40] HTTPConnectionPool(host='127.0.0.1', port=54466): Read timed out., retrying in 0.6 seconds...
+[2022-07-23 16:32:16,661] [WARNING] [DESKTOP-GEC281Q][api.py - line:40] HTTPConnectionPool(host='127.0.0.1', port=54539): Read timed out., retrying in 0.7 seconds...
+[2022-07-23 16:32:27,929] [WARNING] [DESKTOP-GEC281Q][api.py - line:40] HTTPConnectionPool(host='127.0.0.1', port=54876): Read timed out. (read timeout=10), retrying in 0.7999999999999999 seconds...
+[2022-07-23 16:32:51,800] [WARNING] [DESKTOP-GEC281Q][api.py - line:40] ('Connection aborted.', ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None)), retrying in 0.5 seconds...
+[2022-07-23 16:33:02,595] [ERROR] [DESKTOP-GEC281Q][screenshot.py - line:34] 
+Screenshot fail
+Traceback (most recent call last):
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\urllib3\response.py", line 441, in _error_catcher
+    yield
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\urllib3\response.py", line 522, in read
+    data = self._fp.read(amt) if not fp_closed else b""
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\http\client.py", line 447, in read
+    n = self.readinto(b)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\http\client.py", line 491, in readinto
+    n = self.fp.readinto(b)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\socket.py", line 589, in readinto
+    return self._sock.recv_into(b)
+socket.timeout: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\requests\models.py", line 816, in generate
+    yield from self.raw.stream(chunk_size, decode_content=True)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\urllib3\response.py", line 579, in stream
+    data = self.read(amt=amt, decode_content=decode_content)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\urllib3\response.py", line 544, in read
+    raise IncompleteRead(self._fp_bytes_read, self.length_remaining)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\contextlib.py", line 130, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\urllib3\response.py", line 446, in _error_catcher
+    raise ReadTimeoutError(self._pool, None, "Read timed out.")
+urllib3.exceptions.ReadTimeoutError: HTTPConnectionPool(host='127.0.0.1', port=54885): Read timed out.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Android automation\screenshot\screenshot.py", line 25, in screenshot
+    AdbConnect.d.screenshot(picture_file)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\retry\api.py", line 74, in retry_decorator
+    logger)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\retry\api.py", line 33, in __retry_internal
+    return f()
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\uiautomator2\__init__.py", line 933, in screenshot
+    r = self.http.get("/screenshot/0", timeout=10)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\requests\sessions.py", line 600, in get
+    return self.request("GET", url, **kwargs)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\uiautomator2\__init__.py", line 225, in request
+    return super().request(method, url, **kwargs)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\uiautomator2\__init__.py", line 120, in request
+    self).request(method, url, **kwargs)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\requests\sessions.py", line 587, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\requests\sessions.py", line 745, in send
+    r.content
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\requests\models.py", line 899, in content
+    self._content = b"".join(self.iter_content(CONTENT_CHUNK_SIZE)) or b""
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\requests\models.py", line 822, in generate
+    raise ConnectionError(e)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='127.0.0.1', port=54885): Read timed out.
+[2022-07-23 16:35:18,013] [WARNING] [DESKTOP-GEC281Q][api.py - line:40] ('Connection aborted.', ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None)), retrying in 0.5 seconds...
+[2022-07-23 16:35:18,612] [INFO] [DESKTOP-GEC281Q][globals.py - line:73] com.xbh.jyjsetting app is stop
+[2022-07-23 17:02:37,102] [INFO] [DESKTOP-GEC281Q][globals.py - line:63] com.xbh.jyjsetting app is start
+[2022-07-23 17:02:40,410] [INFO] [DESKTOP-GEC281Q][test_case_001.py - line:40] start app success
+[2022-07-23 17:02:41,330] [INFO] [DESKTOP-GEC281Q][test_case_001.py - line:71] case1:Choose universal -- personal is success
+[2022-07-23 17:03:33,744] [WARNING] [DESKTOP-GEC281Q][api.py - line:40] ('Connection aborted.', ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None)), retrying in 0.5 seconds...
+[2022-07-23 17:03:44,754] [WARNING] [DESKTOP-GEC281Q][api.py - line:40] HTTPConnectionPool(host='127.0.0.1', port=54225): Read timed out., retrying in 0.5 seconds...
+[2022-07-23 17:04:36,975] [WARNING] [DESKTOP-GEC281Q][api.py - line:40] ('Connection aborted.', ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None)), retrying in 0.5 seconds...
+[2022-07-23 17:04:47,785] [WARNING] [DESKTOP-GEC281Q][api.py - line:40] HTTPConnectionPool(host='127.0.0.1', port=54225): Read timed out., retrying in 0.6 seconds...
+[2022-07-23 17:05:18,043] [WARNING] [DESKTOP-GEC281Q][api.py - line:40] ('Connection aborted.', ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None)), retrying in 0.5 seconds...
+[2022-07-23 17:05:28,848] [WARNING] [DESKTOP-GEC281Q][api.py - line:40] HTTPConnectionPool(host='127.0.0.1', port=54225): Read timed out., retrying in 0.7 seconds...
+[2022-07-23 17:08:42,298] [ERROR] [DESKTOP-GEC281Q][screenshot.py - line:34] 
+Screenshot fail
+Traceback (most recent call last):
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\urllib3\connectionpool.py", line 449, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\urllib3\connectionpool.py", line 444, in _make_request
+    httplib_response = conn.getresponse()
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\http\client.py", line 1321, in getresponse
+    response.begin()
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\http\client.py", line 296, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\http\client.py", line 257, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\socket.py", line 589, in readinto
+    return self._sock.recv_into(b)
+socket.timeout: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\requests\adapters.py", line 499, in send
+    timeout=timeout,
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\urllib3\util\retry.py", line 550, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\urllib3\packages\six.py", line 770, in reraise
+    raise value
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\urllib3\connectionpool.py", line 710, in urlopen
+    chunked=chunked,
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\urllib3\connectionpool.py", line 451, in _make_request
+    self._raise_timeout(err=e, url=url, timeout_value=read_timeout)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\urllib3\connectionpool.py", line 341, in _raise_timeout
+    self, url, "Read timed out. (read timeout=%s)" % timeout_value
+urllib3.exceptions.ReadTimeoutError: HTTPConnectionPool(host='127.0.0.1', port=54225): Read timed out. (read timeout=3)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\uiautomator2\__init__.py", line 320, in _prepare_atx_agent
+    version = requests.get(version_url, timeout=3).text
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\requests\sessions.py", line 587, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\requests\sessions.py", line 701, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\requests\adapters.py", line 578, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: HTTPConnectionPool(host='127.0.0.1', port=54225): Read timed out. (read timeout=3)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Android automation\screenshot\screenshot.py", line 25, in screenshot
+    AdbConnect.d.screenshot(picture_file)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\retry\api.py", line 74, in retry_decorator
+    logger)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\retry\api.py", line 33, in __retry_internal
+    return f()
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\uiautomator2\__init__.py", line 933, in screenshot
+    r = self.http.get("/screenshot/0", timeout=10)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\requests\sessions.py", line 600, in get
+    return self.request("GET", url, **kwargs)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\uiautomator2\__init__.py", line 223, in request
+    self.__client._prepare_atx_agent()
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\uiautomator2\__init__.py", line 324, in _prepare_atx_agent
+    self._setup_atx_agent()
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\uiautomator2\__init__.py", line 330, in _setup_atx_agent
+    self._kill_process_by_name("atx-agent", use_adb=True)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\uiautomator2\__init__.py", line 748, in _kill_process_by_name
+    for p in self._iter_process(use_adb=use_adb):
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\uiautomator2\__init__.py", line 768, in _iter_process
+    output = self._adb_device.shell("ps; ps -A")
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\adbutils\_device.py", line 192, in shell
+    c.check_okay()
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\adbutils\_adb.py", line 133, in check_okay
+    raise AdbError(self.read_string_block())
+adbutils.errors.AdbError: closed
+[2022-07-23 17:15:37,698] [INFO] [DESKTOP-GEC281Q][globals.py - line:63] com.xbh.jyjsetting app is start
+[2022-07-23 17:15:40,966] [INFO] [DESKTOP-GEC281Q][test_case_001.py - line:40] start app success
+[2022-07-23 17:15:42,068] [INFO] [DESKTOP-GEC281Q][test_case_001.py - line:71] case1:Choose universal -- personal is success
+[2022-07-23 17:20:28,680] [WARNING] [DESKTOP-GEC281Q][api.py - line:40] ('Connection aborted.', ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None)), retrying in 0.5 seconds...
+[2022-07-23 17:20:39,430] [WARNING] [DESKTOP-GEC281Q][api.py - line:40] HTTPConnectionPool(host='127.0.0.1', port=55997): Read timed out., retrying in 0.5 seconds...
+[2022-07-23 17:26:39,624] [WARNING] [DESKTOP-GEC281Q][api.py - line:40] HTTPConnectionPool(host='127.0.0.1', port=55997): Read timed out., retrying in 0.6 seconds...
+[2022-07-23 17:26:50,253] [INFO] [DESKTOP-GEC281Q][screenshot.py - line:31] 
+Screenshot success
+[2022-07-23 17:26:50,509] [INFO] [DESKTOP-GEC281Q][globals.py - line:73] com.xbh.jyjsetting app is stop
+[2022-07-23 17:33:35,980] [INFO] [DESKTOP-GEC281Q][globals.py - line:63] com.xbh.jyjsetting app is start
+[2022-07-23 17:33:39,234] [INFO] [DESKTOP-GEC281Q][test_case_001.py - line:40] start app success
+[2022-07-23 17:33:40,554] [INFO] [DESKTOP-GEC281Q][test_case_001.py - line:71] case1:Choose universal -- personal is success
+[2022-07-23 17:53:08,871] [ERROR] [DESKTOP-GEC281Q][screenshot.py - line:34] 
+Screenshot fail
+Traceback (most recent call last):
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\urllib3\connectionpool.py", line 449, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\urllib3\connectionpool.py", line 444, in _make_request
+    httplib_response = conn.getresponse()
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\http\client.py", line 1321, in getresponse
+    response.begin()
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\http\client.py", line 296, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\http\client.py", line 257, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\socket.py", line 589, in readinto
+    return self._sock.recv_into(b)
+socket.timeout: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\requests\adapters.py", line 499, in send
+    timeout=timeout,
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\urllib3\util\retry.py", line 550, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\urllib3\packages\six.py", line 770, in reraise
+    raise value
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\urllib3\connectionpool.py", line 710, in urlopen
+    chunked=chunked,
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\urllib3\connectionpool.py", line 451, in _make_request
+    self._raise_timeout(err=e, url=url, timeout_value=read_timeout)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\urllib3\connectionpool.py", line 341, in _raise_timeout
+    self, url, "Read timed out. (read timeout=%s)" % timeout_value
+urllib3.exceptions.ReadTimeoutError: HTTPConnectionPool(host='127.0.0.1', port=55997): Read timed out. (read timeout=3)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\uiautomator2\__init__.py", line 320, in _prepare_atx_agent
+    version = requests.get(version_url, timeout=3).text
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\requests\sessions.py", line 587, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\requests\sessions.py", line 701, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\requests\adapters.py", line 578, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: HTTPConnectionPool(host='127.0.0.1', port=55997): Read timed out. (read timeout=3)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Android automation\screenshot\screenshot.py", line 25, in screenshot
+    AdbConnect.d.screenshot(picture_file)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\retry\api.py", line 74, in retry_decorator
+    logger)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\retry\api.py", line 33, in __retry_internal
+    return f()
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\uiautomator2\__init__.py", line 933, in screenshot
+    r = self.http.get("/screenshot/0", timeout=10)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\requests\sessions.py", line 600, in get
+    return self.request("GET", url, **kwargs)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\uiautomator2\__init__.py", line 223, in request
+    self.__client._prepare_atx_agent()
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\uiautomator2\__init__.py", line 324, in _prepare_atx_agent
+    self._setup_atx_agent()
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\uiautomator2\__init__.py", line 330, in _setup_atx_agent
+    self._kill_process_by_name("atx-agent", use_adb=True)
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\uiautomator2\__init__.py", line 748, in _kill_process_by_name
+    for p in self._iter_process(use_adb=use_adb):
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\uiautomator2\__init__.py", line 768, in _iter_process
+    output = self._adb_device.shell("ps; ps -A")
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\adbutils\_device.py", line 192, in shell
+    c.check_okay()
+  File "C:\Users\lg\AppData\Local\Programs\Python\Python37\lib\site-packages\adbutils\_adb.py", line 133, in check_okay
+    raise AdbError(self.read_string_block())
+adbutils.errors.AdbError: closed
+[2022-07-23 17:53:09,380] [INFO] [DESKTOP-GEC281Q][globals.py - line:73] com.xbh.jyjsetting app is stop

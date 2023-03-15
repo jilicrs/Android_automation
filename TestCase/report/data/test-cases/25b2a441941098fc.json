@@ -1,0 +1,201 @@
+{
+  "uid" : "25b2a441941098fc",
+  "name" : "切换主题",
+  "fullName" : "TestCase.test_case_001.TestCase#test_01",
+  "historyId" : "ddf3266499365aeadc9085da4a30af48",
+  "time" : {
+    "start" : 1659011036257,
+    "stop" : 1659011049113,
+    "duration" : 12856
+  },
+  "description" : "\n        test_01:setting-通用-个性化替换主题功能验证\n        :return:\n        ",
+  "descriptionHtml" : "<pre><code>    test_01:setting-通用-个性化替换主题功能验证\n    :return:\n</code></pre>\n",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ {
+    "name" : "_Class__pytest_setup_class",
+    "time" : {
+      "start" : 1659011031722,
+      "stop" : 1659011036240,
+      "duration" : 4518
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "start setting app",
+      "time" : {
+        "start" : 1659011031722,
+        "stop" : 1659011034964,
+        "duration" : 3242
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "hasContent" : false,
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : true,
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "testStage" : {
+    "description" : "\n        test_01:setting-通用-个性化替换主题功能验证\n        :return:\n        ",
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "1.验证setting替换主题功能",
+      "time" : {
+        "start" : 1659011036257,
+        "stop" : 1659011049113,
+        "duration" : 12856
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "1.选择通用--个性化",
+        "time" : {
+          "start" : 1659011036258,
+          "stop" : 1659011043238,
+          "duration" : 6980
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ {
+          "uid" : "6aeb45545f4c69fb",
+          "name" : "Fail Screenshot",
+          "source" : "6aeb45545f4c69fb.png",
+          "type" : "image/png",
+          "size" : 776446
+        } ],
+        "parameters" : [ ],
+        "hasContent" : true,
+        "stepsCount" : 0,
+        "attachmentsCount" : 1,
+        "shouldDisplayMessage" : false
+      }, {
+        "name" : "2.选择第三个模板并应用",
+        "time" : {
+          "start" : 1659011043238,
+          "stop" : 1659011049113,
+          "duration" : 5875
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ {
+          "uid" : "9c9fe2c2ffdff4ac",
+          "name" : "Fail Screenshot",
+          "source" : "9c9fe2c2ffdff4ac.png",
+          "type" : "image/png",
+          "size" : 647047
+        } ],
+        "parameters" : [ ],
+        "hasContent" : true,
+        "stepsCount" : 0,
+        "attachmentsCount" : 1,
+        "shouldDisplayMessage" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "hasContent" : true,
+      "stepsCount" : 2,
+      "attachmentsCount" : 2,
+      "shouldDisplayMessage" : false
+    } ],
+    "attachments" : [ {
+      "uid" : "772f8af6c10613ce",
+      "name" : "log",
+      "source" : "772f8af6c10613ce.txt",
+      "type" : "text/plain",
+      "size" : 446
+    } ],
+    "parameters" : [ ],
+    "hasContent" : true,
+    "stepsCount" : 3,
+    "attachmentsCount" : 3,
+    "shouldDisplayMessage" : false
+  },
+  "afterStages" : [ {
+    "name" : "_Class__pytest_setup_class::0",
+    "time" : {
+      "start" : 1659011049113,
+      "stop" : 1659011050278,
+      "duration" : 1165
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "stop and clear setting app",
+      "time" : {
+        "start" : 1659011049113,
+        "stop" : 1659011050278,
+        "duration" : 1165
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "hasContent" : false,
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : true,
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "公版setting"
+  }, {
+    "name" : "story",
+    "value" : "一、切换系统主题功能验证"
+  }, {
+    "name" : "severity",
+    "value" : "blocker"
+  }, {
+    "name" : "tag",
+    "value" : "P1"
+  }, {
+    "name" : "parentSuite",
+    "value" : "TestCase"
+  }, {
+    "name" : "suite",
+    "value" : "test_case_001"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestCase"
+  }, {
+    "name" : "host",
+    "value" : "DESKTOP-GEC281Q"
+  }, {
+    "name" : "thread",
+    "value" : "38908-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "TestCase.test_case_001"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "P1" ]
+  },
+  "source" : "25b2a441941098fc.json",
+  "parameterValues" : [ ]
+}

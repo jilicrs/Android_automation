@@ -1,0 +1,25 @@
+{
+  "uid" : "ab17fc5a4eb3bca4b216b548c7f9fcbc",
+  "name" : "timeline",
+  "children" : [ {
+    "name" : "DESKTOP-GEC281Q",
+    "children" : [ {
+      "name" : "41436-MainThread",
+      "children" : [ {
+        "name" : "切换主题",
+        "uid" : "16358d3af3950a75",
+        "parentUid" : "8e53c38ef8bd83f97f8040014f89f239",
+        "status" : "passed",
+        "time" : {
+          "start" : 1659011169043,
+          "stop" : 1659011183884,
+          "duration" : 14841
+        },
+        "flaky" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "8e53c38ef8bd83f97f8040014f89f239"
+    } ],
+    "uid" : "da366a41b753c5a21c73eb84941731f3"
+  } ]
+}

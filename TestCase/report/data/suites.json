@@ -1,0 +1,29 @@
+{
+  "uid" : "98d3104e051c652961429bf95fa0b5d6",
+  "name" : "suites",
+  "children" : [ {
+    "name" : "TestCase",
+    "children" : [ {
+      "name" : "test_case_001",
+      "children" : [ {
+        "name" : "TestCase",
+        "children" : [ {
+          "name" : "切换主题",
+          "uid" : "16358d3af3950a75",
+          "parentUid" : "1c295bcfab9ba2f899d54bfd7d545190",
+          "status" : "passed",
+          "time" : {
+            "start" : 1659011169043,
+            "stop" : 1659011183884,
+            "duration" : 14841
+          },
+          "flaky" : false,
+          "parameters" : [ ]
+        } ],
+        "uid" : "1c295bcfab9ba2f899d54bfd7d545190"
+      } ],
+      "uid" : "46f8e38e5ee022d2500186394e0e71b2"
+    } ],
+    "uid" : "ee79ae265a842e48c4df30f006daaf4e"
+  } ]
+}

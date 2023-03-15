@@ -1,0 +1,9 @@
+INFO     root:globals.py:63 com.xbh.jyjsetting app is start
+INFO     root:test_case_001.py:40 start app success
+INFO     root:test_case_001.py:73 case1-1:Choose universal -- personal is success
+INFO     root:screenshot.py:31 
+Screenshot success
+INFO     root:test_case_001.py:85 case1-2:Select the third template and apply it is success
+INFO     root:screenshot.py:31 
+Screenshot success
+INFO     root:globals.py:73 com.xbh.jyjsetting app is stop

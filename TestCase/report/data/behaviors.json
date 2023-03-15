@@ -1,0 +1,25 @@
+{
+  "uid" : "b1a8273437954620fa374b796ffaacdd",
+  "name" : "behaviors",
+  "children" : [ {
+    "name" : "公版setting",
+    "children" : [ {
+      "name" : "一、切换系统主题功能验证",
+      "children" : [ {
+        "name" : "切换主题",
+        "uid" : "16358d3af3950a75",
+        "parentUid" : "ab474bb2a48b5f7f3a08851fd6471dee",
+        "status" : "passed",
+        "time" : {
+          "start" : 1659011169043,
+          "stop" : 1659011183884,
+          "duration" : 14841
+        },
+        "flaky" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "ab474bb2a48b5f7f3a08851fd6471dee"
+    } ],
+    "uid" : "3e67357a50bfc334303282a1ea2e358c"
+  } ]
+}

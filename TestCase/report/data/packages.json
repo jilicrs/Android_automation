@@ -1,0 +1,21 @@
+{
+  "uid" : "83edc06c07f9ae9e47eb6dd1b683e4e2",
+  "name" : "packages",
+  "children" : [ {
+    "name" : "TestCase.test_case_001",
+    "children" : [ {
+      "name" : "切换主题",
+      "uid" : "16358d3af3950a75",
+      "parentUid" : "1cc78237ee59498d047ab70054b1007b",
+      "status" : "passed",
+      "time" : {
+        "start" : 1659011169043,
+        "stop" : 1659011183884,
+        "duration" : 14841
+      },
+      "flaky" : false,
+      "parameters" : [ ]
+    } ],
+    "uid" : "TestCase.test_case_001"
+  } ]
+}

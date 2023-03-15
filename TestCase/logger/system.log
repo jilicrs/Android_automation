@@ -1,0 +1,45 @@
+[2022-07-28 20:13:52,667] [INFO] [DESKTOP-GEC281Q][globals.py - line:63] com.xbh.jyjsetting app is start
+[2022-07-28 20:13:56,052] [INFO] [DESKTOP-GEC281Q][test_case_001.py - line:40] start app success
+[2022-07-28 20:13:59,159] [INFO] [DESKTOP-GEC281Q][test_case_001.py - line:73] case1-1:Choose universal -- personal is success
+[2022-07-28 20:14:03,766] [INFO] [DESKTOP-GEC281Q][screenshot.py - line:31] 
+Screenshot success
+[2022-07-28 20:14:05,419] [INFO] [DESKTOP-GEC281Q][test_case_001.py - line:85] case1-2:Select the third template and apply it is success
+[2022-07-28 20:14:09,776] [INFO] [DESKTOP-GEC281Q][screenshot.py - line:31] 
+Screenshot success
+[2022-07-28 20:14:09,843] [INFO] [DESKTOP-GEC281Q][globals.py - line:73] com.xbh.jyjsetting app is stop
+[2022-07-28 20:18:42,281] [INFO] [DESKTOP-GEC281Q][globals.py - line:63] com.xbh.jyjsetting app is start
+[2022-07-28 20:18:45,637] [INFO] [DESKTOP-GEC281Q][test_case_001.py - line:40] start app success
+[2022-07-28 20:18:48,674] [INFO] [DESKTOP-GEC281Q][test_case_001.py - line:73] case1-1:Choose universal -- personal is success
+[2022-07-28 20:18:53,497] [INFO] [DESKTOP-GEC281Q][screenshot.py - line:31] 
+Screenshot success
+[2022-07-28 20:18:55,043] [INFO] [DESKTOP-GEC281Q][test_case_001.py - line:85] case1-2:Select the third template and apply it is success
+[2022-07-28 20:18:59,416] [INFO] [DESKTOP-GEC281Q][screenshot.py - line:31] 
+Screenshot success
+[2022-07-28 20:18:59,481] [INFO] [DESKTOP-GEC281Q][globals.py - line:73] com.xbh.jyjsetting app is stop
+[2022-07-28 20:20:13,286] [INFO] [DESKTOP-GEC281Q][globals.py - line:63] com.xbh.jyjsetting app is start
+[2022-07-28 20:20:16,711] [INFO] [DESKTOP-GEC281Q][test_case_001.py - line:40] start app success
+[2022-07-28 20:20:19,808] [INFO] [DESKTOP-GEC281Q][test_case_001.py - line:73] case1-1:Choose universal -- personal is success
+[2022-07-28 20:20:24,396] [INFO] [DESKTOP-GEC281Q][screenshot.py - line:31] 
+Screenshot success
+[2022-07-28 20:20:25,892] [INFO] [DESKTOP-GEC281Q][test_case_001.py - line:85] case1-2:Select the third template and apply it is success
+[2022-07-28 20:20:30,210] [INFO] [DESKTOP-GEC281Q][screenshot.py - line:31] 
+Screenshot success
+[2022-07-28 20:20:30,266] [INFO] [DESKTOP-GEC281Q][globals.py - line:73] com.xbh.jyjsetting app is stop
+[2022-07-28 20:23:51,962] [INFO] [DESKTOP-GEC281Q][globals.py - line:63] com.xbh.jyjsetting app is start
+[2022-07-28 20:23:55,408] [INFO] [DESKTOP-GEC281Q][test_case_001.py - line:40] start app success
+[2022-07-28 20:23:58,514] [INFO] [DESKTOP-GEC281Q][test_case_001.py - line:73] case1-1:Choose universal -- personal is success
+[2022-07-28 20:24:03,238] [INFO] [DESKTOP-GEC281Q][screenshot.py - line:31] 
+Screenshot success
+[2022-07-28 20:24:04,790] [INFO] [DESKTOP-GEC281Q][test_case_001.py - line:85] case1-2:Select the third template and apply it is success
+[2022-07-28 20:24:09,112] [INFO] [DESKTOP-GEC281Q][screenshot.py - line:31] 
+Screenshot success
+[2022-07-28 20:24:09,180] [INFO] [DESKTOP-GEC281Q][globals.py - line:73] com.xbh.jyjsetting app is stop
+[2022-07-28 20:26:04,837] [INFO] [DESKTOP-GEC281Q][globals.py - line:63] com.xbh.jyjsetting app is start
+[2022-07-28 20:26:08,223] [INFO] [DESKTOP-GEC281Q][test_case_001.py - line:40] start app success
+[2022-07-28 20:26:11,290] [INFO] [DESKTOP-GEC281Q][test_case_001.py - line:73] case1-1:Choose universal -- personal is success
+[2022-07-28 20:26:15,829] [INFO] [DESKTOP-GEC281Q][screenshot.py - line:31] 
+Screenshot success
+[2022-07-28 20:26:17,372] [INFO] [DESKTOP-GEC281Q][test_case_001.py - line:85] case1-2:Select the third template and apply it is success
+[2022-07-28 20:26:23,882] [INFO] [DESKTOP-GEC281Q][screenshot.py - line:31] 
+Screenshot success
+[2022-07-28 20:26:23,944] [INFO] [DESKTOP-GEC281Q][globals.py - line:73] com.xbh.jyjsetting app is stop
