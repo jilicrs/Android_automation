@@ -83,22 +83,22 @@ if __name__ == '__main__':
         if test:
             time.sleep(2)
             # 检测U盘是否满足4个
-            # if monitor_disk(USB_Disk=4):
-            print('==============================================================================================')
-            print('Test Result：{}:The {} test pass'.format(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-                                                           start_test), test)
-            print('==============================================================================================')
-            start_test = start_test + 1
-            time.sleep(2)
-            print('3.{}:change android'.format(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
-            command_hex2 = serial_sent_hex(command='ANDROID')
-            time.sleep(3)
-            continue
-            # else:
-            #     print('{}: The {} test times Error:USB device identification error!!!'.format
-            #           (datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'), start_test))
-            #     input('============Press Enter to Exit============')
-            #     break
+            if monitor_disk(USB_Disk=4):
+                print('==============================================================================================')
+                print('Test Result：{}:The {} test pass'.format(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                                                               start_test), test)
+                print('==============================================================================================')
+                start_test = start_test + 1
+                time.sleep(2)
+                print('3.{}:change android'.format(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
+                command_hex2 = serial_sent_hex(command='ANDROID')
+                time.sleep(3)
+                continue
+            else:
+                print('{}: The {} test times Error:USB device identification error!!!'.format
+                      (datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'), start_test))
+                input('============Press Enter to Exit============')
+                break
         elif start_test > end_test:
             print('{}:Test PASS, test {} times'.format(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
                                                        end_test))
