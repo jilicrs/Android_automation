@@ -9,45 +9,18 @@ import os
 import sys
 import datetime
 import time
-import pynput
-import pynput.mouse
 from BasePage.Rs232_Connect import serial_sent_hex
 from ProwiseSourceTouch.MonitorUSB import monitor_disk
+from ProwiseSourceTouch.MonitorMouse import listen_mouse_click
 
 
 def waite():
     msg = 'Simulated click detection in progress：'
-    for times in range(11, -1, -1):
+    for times in range(21, -1, -1):
         Test = sys.stdout.write("\r{} {}seconds ".format(msg, times))
         time.sleep(1)
         sys.stdout.flush()
         return Test
-
-
-def listen_mouse_click():
-    """
-    listen_mouse_click: 检测Windows是否识别到触摸，10S内未检测到返回False，反之True
-    :return:
-    """
-    while 1:
-        with pynput.mouse.Events() as events:
-            event = events.get(10)
-            if event is None:
-                print('False')
-                return False
-            if event:
-                if isinstance(event, pynput.mouse.Events.Move):
-                    print("Move({} at {})".format(event.x, event.y))
-                elif isinstance(event, pynput.mouse.Events.Click):
-                    print("Click({} at {})".format(event.x, event.y), event.button, event.pressed)
-                    if event.button:
-                        print('PASS')
-                        return True
-                elif isinstance(event, pynput.mouse.Events.Scroll):
-                    print('Scrolled {0} at {1}'.format(
-                        'down' if event.dy < 0 else 'up',
-                        (event.x, event.y)))
-                    print(str(event.dy) + '   ' + str(event.dx))
 
 
 if __name__ == '__main__':
