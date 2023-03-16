@@ -5,9 +5,12 @@
 # @File      :MonitorUSB.py
 __version__ = '1.0.0'
 
+import threading
 import time
 import psutil
 import datetime
+import ctypes
+import inspect
 
 # 获得cpu的个数
 cpu = psutil.cpu_count()
@@ -15,10 +18,9 @@ cpu = psutil.cpu_count()
 # cpu的总体使用情况。要是看每个cpu的情况加上参数percpu=True即可
 cpu1 = psutil.cpu_times_percent()
 
+
 # usb = psutil.disk_partitions()
-
-
-def monitor_disk(USB_Disk):
+def monitor_disk(USB_Disk=4):
     """
     monitor_disk: 检测Windows系统识别到的可移动U盘方法
     :param USB_Disk: 预期找到U盘数量
@@ -64,10 +66,6 @@ def monitor_disk(USB_Disk):
             print('{}:The expected USB devices are excessive, {} USB total found!'.format(
                 datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'), count_new), new_list)
             return False
-
-
-if __name__ == '__main__':
-    a = monitor_disk(USB_Disk=2)
 
 
 
