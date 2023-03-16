@@ -26,7 +26,7 @@ def listen_mouse_click():
     """
     while 1:
         with pynput.mouse.Events() as events:
-            event = events.get(10)
+            event = events.get(20)
             if event is None:
                 print('False')
                 return False
