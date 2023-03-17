@@ -9,6 +9,7 @@ import os
 import sys
 import datetime
 import time
+import threading
 from BasePage.Rs232_Connect import serial_sent_hex
 from ProwiseSourceTouch.MonitorUSB import monitor_disk
 from ProwiseSourceTouch.MonitorMouse import listen_mouse_click
@@ -33,6 +34,9 @@ if __name__ == '__main__':
     # 最大测试次数：
     end_test = int(input('②Number of test end:'))
 
+    pass_test = 0
+    false_test = 0
+
     print('输入测试外部通道，大写：')  # 输入测试外部通道，大写：列如：USB_C
     Source = input('③Test change source:')
 
@@ -41,6 +45,7 @@ if __name__ == '__main__':
 
     while start_test < end_test:
         print('{}:start {} test'.format(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'), start_test))
+        print('Total test：{}，PASS:{},False:{}'.format(start_test, pass_test, false_test))
         time.sleep(2)
         print('************1.{}:change {} source************'.format(datetime.datetime.now().
                                                                      strftime('%Y-%m-%d %H:%M:%S'),
@@ -52,33 +57,36 @@ if __name__ == '__main__':
                                                                ('%Y-%m-%d %H:%M:%S')))
         time.sleep(1)
         # mouse.position(400, 300)
-        test = listen_mouse_click()
-        if test:
+        mouse_click_thread = threading.Thread(target=listen_mouse_click)
+        usb_device_thread = threading.Thread(target=monitor_disk)
+        mouse_click_thread.start()
+        usb_device_thread.start()
+        if mouse_click_thread and usb_device_thread:
             time.sleep(2)
-            # 检测U盘是否满足4个
-            if monitor_disk(USB_Disk=4):
-                print('==============================================================================================')
-                print('Test Result：{}:The {} test pass'.format(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-                                                               start_test), test)
-                print('==============================================================================================')
-                start_test = start_test + 1
-                time.sleep(2)
-                print('3.{}:change android'.format(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
-                command_hex2 = serial_sent_hex(command='ANDROID')
-                time.sleep(3)
-                continue
-            else:
-                print('{}: The {} test times Error:USB device identification error!!!'.format
-                      (datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'), start_test))
-                input('============Press Enter to Exit============')
-                break
+            print('==============================================================================================')
+            print('Test Result：{}:The {} test pass'.format(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                                                           start_test), mouse_click_thread, usb_device_thread)
+            print('==============================================================================================')
+            pass_test += 1
+            start_test = start_test + 1
+            time.sleep(2)
+            print('3.{}:change android'.format(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
+            command_hex2 = serial_sent_hex(command='ANDROID')
+            time.sleep(3)
+            continue
+        elif not mouse_click_thread:
+            time.sleep(2)
+            print('{}: The {} test times Error:Coordinates not clicked!!!'.format(datetime.datetime.now().strftime
+                                                                                  ('%Y-%m-%d %H:%M:%S'), start_test))
+            false_test += 1
+            continue
+        elif not usb_device_thread:
+            print('{}: The {} test times Error:USB device identification error!!!'.format
+                  (datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'), start_test))
+            false_test += 1
+            continue
         elif start_test > end_test:
             print('{}:Test PASS, test {} times'.format(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
                                                        end_test))
-            input('============Press Enter to Exit============')
-            break
-        else:
-            print('{}: The {} test times Error:Coordinates not clicked!!!'.format(datetime.datetime.now().strftime
-                                                               ('%Y-%m-%d %H:%M:%S'), start_test))
             input('============Press Enter to Exit============')
             break
