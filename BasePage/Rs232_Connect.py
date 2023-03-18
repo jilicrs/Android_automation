@@ -5,7 +5,6 @@
 # @File      :Rs232_Connect.py
 __version__ = '1.0.0'
 
-import time
 import serial
 import serial.tools.list_ports
 
@@ -47,46 +46,54 @@ RS232_Connect = {
 
 
 def get_serial_comport():
+    """
+    get_serial_comport: 获取设备管理器COM口
+    :return: list(comport)[0]
+    """
     ports_list = list(serial.tools.list_ports.comports())
     if len(ports_list) <= 0:
         return False
-        # print('没有找到可用的串口')
     else:
-        # print('找到以下可用串口设备:')
         for comport in ports_list:
             print(list(comport)[0], list(comport)[1])
             return list(comport)[0]
 
 
 def open_serial_comport():
-    # 默认波特率9600
+    """
+    open_serial_comport: 打开串口函数
+    :return: ser
+    """
     ser = serial.Serial(port=get_serial_comport(), baudrate=9600, timeout=3)
     if ser.isOpen():
-        pass
-        # print('串口打开成功！')
+        return ser
     else:
         return False
-        # print('串口打开失败！请检查串口是否被占用')
-    return ser
 
 
 def close_serial_comport():
+    """
+    close_serial_comport: 关闭串口函数
+    :return: True or False
+    """
     open_serial_comport().close()
     if open_serial_comport().isOpen():
         return False
-        # print('串口未关闭')
     else:
         return True
-        # print('串口关闭成功')
 
 
 def serial_sent_hex(command):
-    # bytes.fromhex()使用这个函数进行数据转换，可以把16进制的数值转换字节数据
-    # (即比特流，字符串与比特流间还可以用encode（）和decode（）进行编解码)字符串与比特流间还可以用encode
+    """
+    serial_sent_hex:
+    bytes.fromhex()使用这个函数进行数据转换，可以把16进制的数值转换字节数据
+    (即比特流，字符串与比特流间还可以用encode（）和decode（）进行编解码)字符串与比特流间还可以用encode
+    :param command: RS232
+    :return: data: 获取指令的返回值，并且进行类型转换，转换为字符串后便可以进行字符串对比，因而便可以根据返回值进行判断是否执行特定功能
+    """
     var = bytes.fromhex(RS232_Connect["%s" % command])
     open_serial_comport().write(var)
     data = open_serial_comport().read(10)
-    # 获取指令的返回值，并且进行类型转换，转换为字符串后便可以进行字符串对比，因而便可以根据返回值进行判断是否执行特定功能
     data = str(data, encoding="utf-8")
     return data
 
