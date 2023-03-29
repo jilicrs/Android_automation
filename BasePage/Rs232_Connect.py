@@ -41,7 +41,8 @@ RS232_Connect = {
     'Enter': 'AA BB CC 07 4A 00 51 DD EE FF',
     'Back/Escape': 'AA BB CC 07 0A 00 11 DD EE FF',
     'vol+': 'AA BB CC 07 03 00 0A DD EE FF',
-    'vol-': 'AA BB CC 07 41 00 48 DD EE FF'
+    'vol-': 'AA BB CC 07 41 00 48 DD EE FF',
+    'Get_Firmware_Version_Scaler': 'F6 03 01 00 FA 6F',
 }
 
 
@@ -59,16 +60,7 @@ def get_serial_comport():
             return list(comport)[0]
 
 
-def open_serial_comport():
-    """
-    open_serial_comport: 打开串口函数
-    :return: ser
-    """
-    ser = serial.Serial(port=get_serial_comport(), baudrate=9600, timeout=3)
-    if ser.isOpen():
-        return ser
-    else:
-        return False
+ser = serial.Serial(port=get_serial_comport(), baudrate=9600, timeout=3)
 
 
 def close_serial_comport():
@@ -76,8 +68,8 @@ def close_serial_comport():
     close_serial_comport: 关闭串口函数
     :return: True or False
     """
-    open_serial_comport().close()
-    if open_serial_comport().isOpen():
+    ser.close()
+    if ser.isOpen():
         return False
     else:
         return True
@@ -92,10 +84,9 @@ def serial_sent_hex(command):
     :return: data: 获取指令的返回值，并且进行类型转换，转换为字符串后便可以进行字符串对比，因而便可以根据返回值进行判断是否执行特定功能
     """
     var = bytes.fromhex(RS232_Connect["%s" % command])
-    open_serial_comport().write(var)
-    data = open_serial_comport().read(10)
+    ser.write(var)
+    data = ser.read(10)
     data = str(data, encoding="utf-8")
     return data
-
 
 
