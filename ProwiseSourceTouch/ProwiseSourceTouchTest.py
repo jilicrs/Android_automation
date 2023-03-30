@@ -12,7 +12,7 @@ from ProwiseSourceTouch.MonitorMicarray import monitor_micarray
 from BasePage.Rs232_Connect import serial_sent_hex
 from ProwiseSourceTouch.MonitorUSB import monitor_disk
 from ProwiseSourceTouch.MonitorMouse import listen_mouse_click
-from ProwiseSourceTouch.thread import MyThread
+from ProwiseSourceTouch.Thread import MyThread
 
 
 def waite():

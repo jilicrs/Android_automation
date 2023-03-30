@@ -2,7 +2,7 @@
 # -*- coding:utf-8 -*-
 # @Time      :2023/3/18 10:24
 # @Author    :risheng.chen@lango-tech.com
-# @File      :thread.py
+# @File      :Thread.py
 __version__ = '1.0.0'
 
 import threading
