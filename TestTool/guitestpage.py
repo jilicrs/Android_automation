@@ -6,9 +6,9 @@
 __version__ = '1.0.0'
 
 import os
-
 import serial
 import serial.tools.list_ports
+import subprocess
 
 RS232_Connect = {
     'Power_Off': 'AA BB CC 01 01 00 02 DD EE FF',  # 关机
@@ -28,7 +28,28 @@ open_comport = '打开串口'
 open_down = '关闭串口'
 adb_connect = '连接ADB'
 choose_instruct = '选择发送指令：'
-file = r'C:\Users\lg\AppData\Local\Programs\Python\Python37\Lib\site-packages\TestTool\222.png'
+
+
+def adb_connect_ip(adb_ip):
+    adb = os.system('adb connect {}'.format(adb_ip))
+    return adb
+
+
+def check_adb_status(device_id):
+    out, info = subprocess.getstatusoutput("adb -s "+device_id+" get-state")
+    print(out, info)
+    if out == 0:
+        if 'device' in info:
+            print('[info] ADB device {} is online'.format(device_id))
+            return True
+        elif 'offline' in info:
+            print('[WARNING] ADB device {} is offline'.format(device_id))
+            return False
+        else:
+            print('[WARNING] ADB is abnormal' + info)
+    elif out == 1:
+        print('[WARNING]' + info)
+        return False
 
 
 class ComPort(object):
@@ -60,10 +81,3 @@ class ComPort(object):
         data = str(data, encoding="utf-16")
         return data
 
-
-class AdbConnect(object):
-    def __init__(self, device):
-        self.device = device
-
-    def adb_connect(self):
-        return os.system('adb connect {}'.format(self.device))
