@@ -148,7 +148,8 @@ TitleLayout = [
 ]
 
 # no_titlebar=True 去掉标题栏，创建窗口==========================================================================
-LoginWindow = pg.Window('LOGIN TEST SYSTEM', TitleLayout, size=(400, 190))
+LoginWindow = pg.Window('LOGIN TEST SYSTEM', TitleLayout, size=(400, 190), no_titlebar=True,
+                        grab_anywhere=True)
 window = pg.Window(ToolsPage().TestManageSystem, layout, size=(800, 500))
 
 # 主函数=====================================================================================================
@@ -180,7 +181,7 @@ if __name__ == '__main__':
                         if not check_adb_status(values['_ADB_IP_INPUT_']):
                             state1 = 0
                             window['_OUTPUT_'].update(datetime.datetime.now().strftime('%Y/%m/%d_%H:%M:%S:') +
-                                                      '错误：请输入IP或检查IP是否正确!')
+                                                      '连接超时：请输入IP或检查IP是否正确!')
                         else:
                             # 判断adb是否正常连接
                             if check_adb_status(values["_ADB_IP_INPUT_"]):
@@ -224,8 +225,10 @@ if __name__ == '__main__':
                                                           '串口打开失败！')
                             else:
                                 raise KeyError('Serial port exception')
-                        except KeyError as e:
-                            print("The serial port switch is abnormal. Procedure", repr(e))
+                        except:
+                            window['_OUTPUT_'].update(datetime.datetime.now().strftime('%Y/%m/%d_%H:%M:%S:') +
+                                                      '串口连接异常，请检查串口是否连接或被其他程序占用！')
+                            continue
                     elif event in "_COMPORT_COLS_":
                         try:
                             if ToolsPage().open_port().isOpen():
@@ -244,8 +247,10 @@ if __name__ == '__main__':
                                                           '串口未关闭')
                             else:
                                 raise KeyError('Serial port exception')
-                        except KeyError as e:
-                            print("The serial port switch is abnormal.", repr(e))
+                        except:
+                            window['_OUTPUT_'].update(datetime.datetime.now().strftime('%Y/%m/%d_%H:%M:%S:') +
+                                                      '串口未打开，不用关闭串口')
+                            continue
                     if event in "_SEND_":
                         try:
                             if values["_SERIAL_"] == 'Rs232：Power_On':
@@ -304,7 +309,10 @@ if __name__ == '__main__':
                     print(f'Event:{event}')
                     print(str(values))
                 window.close()
-            else:
-                pg.PopupOK('用户名或密码错误！')
+            elif values2["_USER_"] != 'admin':
+                pg.PopupOK('用户名错误！')
+                continue
+            elif values2["_PASSWORD_"] != '123456':
+                pg.PopupOK('密码错误！')
                 continue
     LoginWindow.close()
