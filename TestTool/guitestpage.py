@@ -10,10 +10,15 @@ import serial
 import serial.tools.list_ports
 import subprocess
 
+global RS232_Connect
+
+
 RS232_Connect = {
-    'Power_Off': 'AA BB CC 01 01 00 02 DD EE FF',  # 关机
-    'Power_On': 'AA BB CC 01 00 00 01 DD EE FF',  # 开机
+    # 'Power_Off': 'AA BB CC 01 01 00 02 DD EE FF',  # 关机
+    # 'Power_On': 'AA BB CC 01 00 00 01 DD EE FF',  # 开机
     'Source': 'F6 4D 01 00 44 6F',  # 获取当前通道信号状态，01表示有信号，00无信号
+    'Power_On': 'A6 01 00 00 00 04 01 18 02 B8',
+    'Power_Off': 'A6 01 00 00 00 04 01 18 01 BB'
 }
 
 TestManageSystem = '测试管理系统'
@@ -63,7 +68,6 @@ class ComPort(object):
         else:
             print('Find the following available serial port devices:', self.ports_list)
             for comport in self.ports_list:
-                print(list(comport)[0], list(comport)[1])
                 return list(comport)[0]
 
     def open_serial_comport(self):
@@ -78,6 +82,7 @@ class ComPort(object):
         var = bytes.fromhex(RS232_Connect["%s" % command])
         self.open_serial_comport().write(var)
         data = self.open_serial_comport().read(10)
-        data = str(data, encoding="utf-16")
+        data = str(data, encoding="utf-8")
         return data
+
 

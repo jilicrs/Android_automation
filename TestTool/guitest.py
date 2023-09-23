@@ -18,6 +18,13 @@ from TestTool.guitestpage import ExitSystem, Send, TestManageSystem, Getport, \
     User, PassWord, Login, Cancel, open_comport, open_down, adb_connect, choose_instruct
 
 
+RS232_Connect = {
+    'Power_Off': 'AA BB CC 01 01 00 02 DD EE FF',  # 关机
+    'Power_On': 'AA BB CC 01 00 00 01 DD EE FF',  # 开机
+    'Source': 'F6 4D 01 00 44 6F',  # 获取当前通道信号状态，01表示有信号，00无信号
+}
+
+
 class ToolsPage(object):
     def __init__(self):
         self.Getport = Getport
@@ -46,9 +53,10 @@ class ToolsPage(object):
         close_serial_port = self.comport.close_serial_comport()
         return close_serial_port
 
-    def serial_send_hex(self):
-        send_hex = self.comport.serial_sent_hex(command=values["_SERIAL_"])
+    def serial_send_hex(self, values):
+        send_hex = self.comport.serial_sent_hex(command=values)
         return send_hex
+
 
 
 # 编码图片/登录
@@ -110,8 +118,8 @@ config = [
      pg.Text(text=status1[state1][0], text_color=status1[state1][1], size=(12, 1),
              font=("Courier New", 8), key='INDICATOR1')],
     [pg.Text(text=ToolsPage().choose_instruct, size=(20, 1), font=("宋体", 10), relief='ridge', pad=(2, 6))],
-    [pg.Combo(['Rs232：Power_Off', 'Rs232：Power_On', 'ADB:重启整机'],
-              size=(10, 1), font=("宋体", 10),
+    [pg.Combo(['Power_Off', 'Power_On', 'ADB:重启整机'],
+              size=(15, 1), font=("宋体", 10),
               default_value=None, key="_SERIAL_",
               background_color='', readonly=True)]
 ]
@@ -153,7 +161,8 @@ LoginWindow = pg.Window('LOGIN TEST SYSTEM', TitleLayout, size=(400, 190), no_ti
 window = pg.Window(ToolsPage().TestManageSystem, layout, size=(800, 500))
 
 # 主函数=====================================================================================================
-if __name__ == '__main__':
+def main():
+    global state1, state
     while True:
         event2, values2 = LoginWindow.read()
         if event2 in (None, "_CANCEL_") or pg.WINDOW_CLOSED:
@@ -199,7 +208,7 @@ if __name__ == '__main__':
                                 window['_OUTPUT_'].update(datetime.datetime.now().strftime('%Y/%m/%d_%H:%M:%S:') +
                                                           "connect to {} fail".format(values['_ADB_IP_INPUT_']))
 
-                    # ++++++++++++++++++++++++++++++++________________________-------------------------
+                    # ++++++++++++++++++++++++++++++++打开com口-------------------------
                     if event in "_COMPORT_":
                         try:
                             if ToolsPage().open_port():
@@ -247,45 +256,48 @@ if __name__ == '__main__':
                                                           '串口未关闭')
                             else:
                                 raise KeyError('Serial port exception')
-                        except:
+                        except Exception as e:
+                            print(e)
                             window['_OUTPUT_'].update(datetime.datetime.now().strftime('%Y/%m/%d_%H:%M:%S:') +
                                                       '串口未打开，不用关闭串口')
                             continue
+
+                    # **********************发送******************************
                     if event in "_SEND_":
                         try:
-                            if values["_SERIAL_"] == 'Rs232：Power_On':
+                            print(f'Event:{event}')
+                            print('打印--', str(values))
+                            print(values["_SERIAL_"])
+                            if values["_SERIAL_"] is 'Power_On':
                                 if state == 0:
                                     EP = pg.popup_ok('Serial port not enabled！！', title='warning ')
                                     if EP == 'Ok':
                                         break
                                 else:
-                                    ToolsPage().serial_send_hex()
+                                    ToolsPage().serial_send_hex(values=values["_SERIAL_"])
                                     name = values["_SERIAL_"]
                                     window['_OUTPUT_'].update(datetime.datetime.now().strftime('%Y/%m/%d_%H:%M:%S:')
                                                               + name)
-                            else:
-                                window['_OUTPUT_'].update(datetime.datetime.now().strftime('%Y/%m/%d_%H:%M:%S:') +
-                                                          '发送失败！')
-                                raise KeyError('The value must be byte data')
-                        except KeyError as e:
-                            print("Serial throw an exception：", repr(e))
-                        try:
-                            if values["_SERIAL_"] == 'Rs232：Power_Off':
+                                    continue
+                            elif values["_SERIAL_"] is 'Power_Off':
                                 if state == 0:
                                     EP = pg.popup_ok('Serial port not enabled！！', title='warning ')
                                     if EP == 'Ok':
                                         break
                                 else:
-                                    ToolsPage().serial_send_hex()
+                                    print('这里这里====',values["_SERIAL_"])
+                                    ToolsPage().serial_send_hex(values=values["_SERIAL_"])
                                     name = values["_SERIAL_"]
                                     window['_OUTPUT_'].update(datetime.datetime.now().strftime('%Y/%m/%d_%H:%M:%S:')
                                                               + name)
+                                    continue
                             else:
                                 window['_OUTPUT_'].update(datetime.datetime.now().strftime('%Y/%m/%d_%H:%M:%S:') +
                                                           '发送失败！')
                                 raise KeyError('The value must be byte data')
-                        except KeyError as e:
+                        except Exception as e:
                             print("Serial throw an exception：", repr(e))
+                            continue
                         try:
                             if values["_SERIAL_"] == 'ADB:重启整机':
                                 if state1 == 1:
@@ -304,8 +316,9 @@ if __name__ == '__main__':
                                     window['_OUTPUT_'].update(datetime.datetime.now().strftime('%Y/%m/%d_%H:%M:%S:') +
                                                               'adb is disconnect!')
                                     raise KeyError('ADB abnormal')
-                        except KeyError as e:
+                        except Exception as e:
                             print("ADB throw an exception：", repr(e))
+                            continue
                     print(f'Event:{event}')
                     print(str(values))
                 window.close()
@@ -316,3 +329,7 @@ if __name__ == '__main__':
                 pg.PopupOK('密码错误！')
                 continue
     LoginWindow.close()
+
+
+if __name__ == '__main__':
+    main()
