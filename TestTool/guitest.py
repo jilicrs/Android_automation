@@ -3,7 +3,7 @@
 # @Time      :2022/12/29 16:40
 # @Author    :risheng.chen@lango-tech.com
 # @File      :guitest.py
-__version__ = '1.0.0'
+__version__ = '2.0.0'
 
 import datetime
 import os
@@ -14,8 +14,10 @@ import base64
 from TestTool.LoginPic_png import img as pic
 from TestTool.guitestpage import adb_connect_ip
 from TestTool.guitestpage import check_adb_status
-from TestTool.guitestpage import ExitSystem, Send, TestManageSystem, Getport, \
-    User, PassWord, Login, Cancel, open_comport, open_down, adb_connect, choose_instruct
+from TestTool.guitestpage import (ExitSystem, Send, TestManageSystem, Getport, \
+    User, PassWord, Login, Cancel, open_comport, open_down, adb_connect, choose_instruct,
+                                  adb_ScreenCap_path, adb_ScreenCap)
+from TestTool.guitest_functional_interface import guitest_adb_screen_cap
 
 
 RS232_Connect = {
@@ -58,7 +60,6 @@ class ToolsPage(object):
         return send_hex
 
 
-
 # 编码图片/登录
 tmp = open('login_pic.png', 'wb')
 tmp.write(base64.b64decode(pic))
@@ -70,9 +71,11 @@ tmp.close()
 pg.change_look_and_feel('Default 1')
 
 # justification='right'
+# 串口指示灯，0默认红灯，表示未连接，1绿灯，表示已连接
 status = [('\u2B24' + ' Disconnect', 'red'), ('\u2B24' + ' Connect', 'green')]
 state = 0
 
+# adb指示灯，0默认红灯，表示未连接，1绿灯，表示已连接
 status1 = [('\u2B24' + ' Disconnect', 'red'), ('\u2b24' + ' Connect', 'green')]
 state1 = 0
 
@@ -109,7 +112,7 @@ config = [
     [open_up, Status],
     [cols_comport],
     # adbIP输入框
-    [pg.Text(text='输入IP地址：', font=('宋体', 10), size=(6, 1), key='_ADB_IP_', border_width=3,
+    [pg.Text(text='IP：', font=('宋体', 10), size=(6, 1), key='_ADB_IP_', border_width=3,
              pad=(2, 6), relief='ridge'),
      pg.InputText("", key='_ADB_IP_INPUT_', font=('楷体', 10), size=(14, 1), border_width=3)],
     # adb连接
@@ -117,8 +120,14 @@ config = [
                border_width=3, pad=(2, 6)),
      pg.Text(text=status1[state1][0], text_color=status1[state1][1], size=(12, 1),
              font=("Courier New", 8), key='INDICATOR1')],
+    # 选择ADB截图路径
+    [pg.FolderBrowse(button_text= adb_ScreenCap_path, font=('宋体', 10), pad=(2, 6), key='_ADB_SAVE_FILE_'), pg.In()],
+    # ADB截图
+    [pg.Button(button_text= adb_ScreenCap, font=('宋体', 10), size=(10, 1), border_width=3, pad=(2, 6),
+               key='_ADB_SCREEN_CAP_')],
+    # 串口指令集合
     [pg.Text(text=ToolsPage().choose_instruct, size=(20, 1), font=("宋体", 10), relief='ridge', pad=(2, 6))],
-    [pg.Combo(['Power_Off', 'Power_On', 'ADB:重启整机'],
+    [pg.Combo(['Power_Off', 'Power_On', 'Source_state', 'ADB:Reboot'],
               size=(15, 1), font=("宋体", 10),
               default_value=None, key="_SERIAL_",
               background_color='', readonly=True)]
@@ -208,7 +217,7 @@ def main():
                                 window['_OUTPUT_'].update(datetime.datetime.now().strftime('%Y/%m/%d_%H:%M:%S:') +
                                                           "connect to {} fail".format(values['_ADB_IP_INPUT_']))
 
-                    # ++++++++++++++++++++++++++++++++打开com口-------------------------
+                    # *********************************打开com口******************************
                     if event in "_COMPORT_":
                         try:
                             if ToolsPage().open_port():
@@ -234,7 +243,8 @@ def main():
                                                           '串口打开失败！')
                             else:
                                 raise KeyError('Serial port exception')
-                        except:
+                        except Exception as e:
+                            print(e)
                             window['_OUTPUT_'].update(datetime.datetime.now().strftime('%Y/%m/%d_%H:%M:%S:') +
                                                       '串口连接异常，请检查串口是否连接或被其他程序占用！')
                             continue
@@ -261,8 +271,27 @@ def main():
                             window['_OUTPUT_'].update(datetime.datetime.now().strftime('%Y/%m/%d_%H:%M:%S:') +
                                                       '串口未打开，不用关闭串口')
                             continue
+                    if event in "_ADB_SCREEN_CAP_":
+                        try:
+                            if state1 == 0:
+                                window['_OUTPUT_'].update(datetime.datetime.now().strftime('%Y/%m/%d_%H:%M:%S:')
+                                                          + 'ADB未连接！')
+                                # 警告弹窗
+                                EP = pg.popup_ok('ADB is disconnect！！', title='warning ')
+                                if EP == 'Ok':
+                                    break
 
-                    # **********************发送******************************
+                                continue
+                            else:
+                                guitest_adb_screen_cap(value1=values["_ADB_IP_INPUT_"], value2=values['_ADB_SAVE_FILE_'])
+                                name = '截图成功: ' + values['_ADB_SAVE_FILE_']
+                                window['_OUTPUT_'].update(datetime.datetime.now().strftime('%Y/%m/%d_%H:%M:%S:')
+                                                      + name)
+                        except Exception as e:
+                            print('截图路径异常', e)
+                            continue
+
+                    # **************************发送******************************
                     if event in "_SEND_":
                         try:
                             print(f'Event:{event}')
@@ -270,6 +299,7 @@ def main():
                             print(values["_SERIAL_"])
                             if values["_SERIAL_"] is 'Power_On':
                                 if state == 0:
+                                    # 警告弹窗
                                     EP = pg.popup_ok('Serial port not enabled！！', title='warning ')
                                     if EP == 'Ok':
                                         break
@@ -279,18 +309,36 @@ def main():
                                     window['_OUTPUT_'].update(datetime.datetime.now().strftime('%Y/%m/%d_%H:%M:%S:')
                                                               + name)
                                     continue
+                    # **********************send_power_off*************************************
                             elif values["_SERIAL_"] is 'Power_Off':
                                 if state == 0:
                                     EP = pg.popup_ok('Serial port not enabled！！', title='warning ')
                                     if EP == 'Ok':
                                         break
                                 else:
-                                    print('这里这里====',values["_SERIAL_"])
                                     ToolsPage().serial_send_hex(values=values["_SERIAL_"])
                                     name = values["_SERIAL_"]
                                     window['_OUTPUT_'].update(datetime.datetime.now().strftime('%Y/%m/%d_%H:%M:%S:')
                                                               + name)
                                     continue
+                    # **********************send_source_state**********************************
+                            elif values["_SERIAL_"] == 'Source_state':
+                                if state == 0:
+                                    EP = pg.popup_ok('Serial port not enabled！！', title='warning ')
+                                    if EP == 'Ok':
+                                        break
+                                else:
+                                    source_state = ToolsPage().serial_send_hex(values=values["_SERIAL_"])
+                                    if source_state == '01':
+                                        name = values["_SERIAL_"]
+                                        window['_OUTPUT_'].update(datetime.datetime.now().strftime('%Y/%m/%d_%H:%M:%S:')
+                                                                  + name, '状态：', source_state, ' 有信号')
+                                        continue
+                                    elif source_state == '00':
+                                        name = values["_SERIAL_"]
+                                        window['_OUTPUT_'].update(datetime.datetime.now().strftime('%Y/%m/%d_%H:%M:%S:')
+                                                                  + name, '状态：', source_state, ' 无信号')
+                                        continue
                             else:
                                 window['_OUTPUT_'].update(datetime.datetime.now().strftime('%Y/%m/%d_%H:%M:%S:') +
                                                           '发送失败！')
@@ -298,6 +346,7 @@ def main():
                         except Exception as e:
                             print("Serial throw an exception：", repr(e))
                             continue
+                    # **************************send_adb_reboot***********************************
                         try:
                             if values["_SERIAL_"] == 'ADB:重启整机':
                                 if state1 == 1:
