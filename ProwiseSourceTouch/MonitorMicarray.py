@@ -2,17 +2,17 @@
 # -*- coding:utf-8 -*-
 # @Time      :2023/3/25 9:44
 # @Author    :risheng.chen@lango-tech.com
-# @File      :MonitorMicarray.py
-__version__ = '1.0.0'
+# @File      :MonitorMicArray.py
+__version__ = '1.0.1'
 
 import sounddevice
 import datetime
 import time
 
 
-def monitor_micarray():
+def Monitor_MicArray():
     """
-    monitor_micarray: 检测Windows麦克风设备来判断整机切换外部通道时是否识别到预期设备
+    Monitor_MicArray: 检测Windows麦克风设备来判断整机切换外部通道时是否识别到预期设备
     sounddevice.query_devices(): 获取设备声音输入输出
     :return: True or False
     """
@@ -40,4 +40,4 @@ def monitor_micarray():
 
 
 if __name__ == '__main__':
-    print(monitor_micarray())
+    print(Monitor_MicArray())
