@@ -17,7 +17,7 @@ class SendEmail(object):
         self.password = 'oqsjqthbheazbgad'
         self.server = smtplib.SMTP_SSL('smtp.qq.com', 465)
 
-    def send_email(self, contents):
+    def send_email(self, contents, to_address):
         # 正文
         loginResult = self.server.login(self.sendAddress, self.password)
         print(loginResult)
@@ -29,22 +29,27 @@ class SendEmail(object):
         message = MIMEText(content, 'plain', 'utf-8')
 
         # 发件人昵称和地址
-        message['From'] = Header('Recen.Chen<771109694@qq.com>')
+        message['From'] = Header('risheng<771109694@qq.com>')
         # 收件人昵称和地址
         message['To'] = Header('Risheng.Chen<risheng.chen@lango-tech.cn>')
         # 抄送人昵称和地址
-        message['Cc'] = Header('')
+        message['Cc'] = Header('黄少<shaoping.huang@lango-tech.cn>')
+        message['Cc'] = Header('吴少<huiming.wu@lango-tech.cn>')
         # 邮件主题
-        message['Subject'] = Header('自动测试执行已完成：')
+        message['Subject'] = '自动测试执行已完成：'
 
         # 发送邮箱
-        self.server.sendmail('771109694@qq.com', ['risheng.chen@lango-tech.cn'],
+        self.server.sendmail(self.sendAddress,
+                             [to_address],
                         message.as_string())
         print('PASS')
         self.server.quit()
 
 if __name__ == '__main__':
-    SendEmail().send_email(contents='广州市黄浦区1030自动发送邮箱测试执行')
+    SendEmail().send_email(contents='广州市黄浦区1030自动发送邮箱测试执行, 来自朗国第一帅《黄少》',
+                           to_address=('risheng.chen@lango-tech.cn',
+                                      'shaoping.huang@lango-tech.cn',
+                                      'huiming.wu@lango-tech.cn'))
 
 
 
