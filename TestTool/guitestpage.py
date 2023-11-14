@@ -9,19 +9,17 @@ import os
 import serial
 import serial.tools.list_ports
 import subprocess
-
+from subprocess import Popen, PIPE, STDOUT
 global RS232_Connect
 
 
 RS232_Connect = {
-    # 'Power_Off': 'AA BB CC 01 01 00 02 DD EE FF',  # 关机
-    # 'Power_On': 'AA BB CC 01 00 00 01 DD EE FF',  # 开机
-    'Source': 'F6 4D 01 00 44 6F',  # 获取当前通道信号状态，01表示有信号，00无信号
-    'Power_On': 'A6 01 00 00 00 04 01 18 02 B8',
-    'Power_Off': 'A6 01 00 00 00 04 01 18 01 BB'
+    'Power_Off': 'AA BB CC 01 01 00 02 DD EE FF',  # 关机
+    'Power_On': 'AA BB CC 01 00 00 01 DD EE FF',  # 开机
+    'Source_state': 'F6 4D 01 00 44 6F',  # 获取当前通道信号状态，01表示有信号，00无信号
 }
 
-TestManageSystem = '测试管理系统'
+TestManageSystem = '集成测试系统'
 User = '用户名'
 PassWord = '密码'
 Login = '登录'
@@ -33,6 +31,8 @@ open_comport = '打开串口'
 open_down = '关闭串口'
 adb_connect = '连接ADB'
 choose_instruct = '选择发送指令：'
+adb_ScreenCap_path = 'ADB截图保存路径'
+adb_ScreenCap = 'ADB截图'
 
 
 def adb_connect_ip(adb_ip):
@@ -84,5 +84,32 @@ class ComPort(object):
         data = self.open_serial_comport().read(10)
         data = str(data, encoding="utf-8")
         return data
+
+def run_adb_command(cmd):
+    result = subprocess.run(cmd, capture_output=True, text=True)
+    return result.stdout
+
+
+def parse_device_list(output):
+    lines = output.splitlines()
+    devices = []
+
+    for line in lines[1:-1]:
+        device = line.split("\t")[0]
+        devices.append(device)
+
+    return devices
+
+
+if __name__ == "__main__":
+        # 示例命令：获取设备列表
+        output = run_adb_command(["adb", "devices"])
+        devices = parse_device_list(output)
+        print(devices)
+        if devices is None:
+            print('没有设备')
+        else:
+            lines = len(devices)
+            print('存在{}个adb设备'.format(lines))
 
 
