@@ -16,7 +16,7 @@ from TestTool.guitestpage import adb_connect_ip
 from TestTool.guitestpage import check_adb_status
 from TestTool.guitestpage import (ExitSystem, Send, TestManageSystem, Getport, \
     User, PassWord, Login, Cancel, open_comport, open_down, adb_connect, choose_instruct,
-                                  adb_ScreenCap_path, adb_ScreenCap)
+    adb_ScreenCap_path, adb_ScreenCap, run_adb_command, parse_device_list)
 from TestTool.guitest_functional_interface import guitest_adb_screen_cap
 
 
@@ -171,7 +171,7 @@ window = pg.Window(ToolsPage().TestManageSystem, layout, size=(800, 500))
 
 # 主函数=====================================================================================================
 def main():
-    global state1, state
+    global state1, state, lines, devices
     while True:
         event2, values2 = LoginWindow.read()
         if event2 in (None, "_CANCEL_") or pg.WINDOW_CLOSED:
@@ -195,27 +195,44 @@ def main():
                     if event in "_GET_COMPORT_":
                         window['_SHOW_COMPORT_'].update(ToolsPage().get_port())
                     if event in "_ADB_CONNECT_":
-                        adb_connect_ip(values['_ADB_IP_INPUT_'])
-                        if not check_adb_status(values['_ADB_IP_INPUT_']):
-                            state1 = 0
-                            window['_OUTPUT_'].update(datetime.datetime.now().strftime('%Y/%m/%d_%H:%M:%S:') +
-                                                      '连接超时：请输入IP或检查IP是否正确!')
-                        else:
-                            # 判断adb是否正常连接
-                            if check_adb_status(values["_ADB_IP_INPUT_"]):
-                                state1 = 1
-                                adb_value, adb_text_color = status1[state1]
-                                window['INDICATOR1'].update(value=adb_value, text_color=adb_text_color)
-                                time.sleep(0.5)
-                                window['_OUTPUT_'].update(datetime.datetime.now().strftime('%Y/%m/%d_%H:%M:%S:') +
-                                                          "connect to {} success".format(values['_ADB_IP_INPUT_']))
-                            elif not check_adb_status(values["_ADB_IP_INPUT_"]):
+                        output = run_adb_command(["adb", "devices"])
+                        devices = parse_device_list(output)
+                        if len(devices) == 0:
+                            adb_connect_ip(values['_ADB_IP_INPUT_'])
+                            if not check_adb_status(values['_ADB_IP_INPUT_']):
                                 state1 = 0
-                                adb_value, adb_text_color = status1[state1]
-                                window['INDICATOR1'].update(value=adb_value, text_color=adb_text_color)
-                                time.sleep(0.5)
                                 window['_OUTPUT_'].update(datetime.datetime.now().strftime('%Y/%m/%d_%H:%M:%S:') +
-                                                          "connect to {} fail".format(values['_ADB_IP_INPUT_']))
+                                                          '连接超时：请检查IP或是否正确!')
+                            else:
+                                # 判断adb是否正常连接
+                                if check_adb_status(values["_ADB_IP_INPUT_"]):
+                                    state1 = 1
+                                    adb_value, adb_text_color = status1[state1]
+                                    window['INDICATOR1'].update(value=adb_value, text_color=adb_text_color)
+                                    time.sleep(0.5)
+                                    window['_OUTPUT_'].update(datetime.datetime.now().strftime('%Y/%m/%d_%H:%M:%S:') +
+                                                              "connect to {} success".format(values['_ADB_IP_INPUT_']))
+                                elif not check_adb_status(values["_ADB_IP_INPUT_"]):
+                                    state1 = 0
+                                    adb_value, adb_text_color = status1[state1]
+                                    window['INDICATOR1'].update(value=adb_value, text_color=adb_text_color)
+                                    time.sleep(0.5)
+                                    window['_OUTPUT_'].update(datetime.datetime.now().strftime('%Y/%m/%d_%H:%M:%S:') +
+                                                              "connect to {} fail".format(values['_ADB_IP_INPUT_']))
+                                    continue
+                        elif len(devices) != 0 and len(devices) > 0:
+                            lines = len(devices)
+                            state1 = 1
+                            adb_value, adb_text_color = status1[state1]
+                            window['INDICATOR1'].update(value=adb_value, text_color=adb_text_color)
+                            time.sleep(0.5)
+                            window['_OUTPUT_'].update(datetime.datetime.now().strftime('%Y/%m/%d_%H:%M:%S:') +
+                                                      "已连接设备数：{}个，设备名{}".format(lines, devices))
+                        else:
+                            window['_OUTPUT_'].update(datetime.datetime.now().strftime('%Y/%m/%d_%H:%M:%S:') +
+                                                      "请输入IP或连接OTG")
+
+
 
                     # *********************************打开com口******************************
                     if event in "_COMPORT_":
@@ -271,6 +288,7 @@ def main():
                             window['_OUTPUT_'].update(datetime.datetime.now().strftime('%Y/%m/%d_%H:%M:%S:') +
                                                       '串口未打开，不用关闭串口')
                             continue
+
                     if event in "_ADB_SCREEN_CAP_":
                         try:
                             if state1 == 0:
@@ -282,14 +300,23 @@ def main():
                                     break
 
                                 continue
+                            elif values['_ADB_SAVE_FILE_'] == '':
+                                window['_OUTPUT_'].update(datetime.datetime.now().strftime('%Y/%m/%d_%H:%M:%S:')
+                                                          + '请选择截图文件保存路径！')
+                                continue
+                            elif lines > 1 and values["_ADB_IP_INPUT_"] == '':
+                                window['_OUTPUT_'].update(datetime.datetime.now().strftime('%Y/%m/%d_%H:%M:%S:')
+                                                          + '设备数量过多:{}，请在IP处填写指定设备IP'.format(devices))
+                                continue
                             else:
                                 guitest_adb_screen_cap(value1=values["_ADB_IP_INPUT_"], value2=values['_ADB_SAVE_FILE_'])
                                 name = '截图成功: ' + values['_ADB_SAVE_FILE_']
                                 window['_OUTPUT_'].update(datetime.datetime.now().strftime('%Y/%m/%d_%H:%M:%S:')
                                                       + name)
                         except Exception as e:
-                            print('截图路径异常', e)
+                            print('截图路径异常或未指定设备', e)
                             continue
+
 
                     # **************************发送******************************
                     if event in "_SEND_":
