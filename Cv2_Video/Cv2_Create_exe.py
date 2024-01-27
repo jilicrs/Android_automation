@@ -4,8 +4,9 @@
 @Time      :2024/1/19 15:20
 @Author    :risheng.chen@lango-tech.cn
 @File      :Cv2_Create_exe.py
-__version__ = '2.0.0'
+__version__ = '2.1.0'
 """
+import time
 
 import cv2
 import os
@@ -22,11 +23,6 @@ def extract_frame(video_path, output_path, second):
     success, image = vidcap.read()
 
     if success:
-        # 保存图片
-        # imwrite无法保存文件到中文路径
-        # cv2.imwrite(output_path, image)
-
-        # 使用imencode方法将文件保存到中文路径
         cv2.imencode('.png', image)[1].tofile(output_path)
         print(f"成功截取视频 {video_path} 中的第 {second} 秒的帧，并保存到 {output_path}。")
     else:
@@ -37,17 +33,35 @@ def extract_frame(video_path, output_path, second):
 
 
 def draw_file(video_folder, output_folder, second):
-    for filename in os.listdir(video_folder):
-        if filename.endswith(".mp4"):
-            # 构建视频文件路径
-            video_path = os.path.join(video_folder, filename)
+    # 遍历文件夹内容，root：文件夹根目录， dirs：文件夹子目录，files：文件夹内所有文件
+    for root, dirs, files in os.walk(video_folder):
+        if not files:
+            print('*****************文件夹为空*****************')
+            return False
+        else:
+            # 定义寻找的文件格式
+            fm = ['.mp4']
+            # 获取列表中符合条件的字符串
+            elem = list(filter(lambda text: all([word in text for word in fm]), files))
+            if elem:
+                # 遍历文件
+                for filename in os.listdir(video_folder):
+                    if filename.endswith(".mp4"):
+                        # 构建视频文件路径
+                        video_path = os.path.join(video_folder, filename)
 
-            # 构建输出图片文件路径
-            output_filename = f"{os.path.splitext(filename)[0]}_{second}s.jpg"
-            output_path = os.path.join(output_folder, output_filename)
+                        # 构建输出图片文件路径
+                        output_filename = f"{os.path.splitext(filename)[0]}_{second}s.jpg"
+                        output_path = os.path.join(output_folder, output_filename)
+                        print('pass')
 
-            # 调用函数截取图片
-            extract_frame(video_path, output_path, second)
+                        # 调用函数截取图片
+                        extract_frame(video_path, output_path, second)
+                return True
+            else:
+                print('*****************文件夹内没有MP4文件*****************')
+                return False
+
 
 
 
