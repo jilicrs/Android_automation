@@ -9,7 +9,7 @@ __version__ = '1.0.0'
 
 import base64
 
-path = ''
+path = 'D:\\Android automation\\Cv2_Video\\cvtelogo.png'
 
 
 def transform(picture_name):

@@ -3,10 +3,9 @@
 -*- coding:utf-8 -*-
 @Time      :2024/1/19 15:20
 @Author    :risheng.chen@lango-tech.cn
-@File      :Cv2_Create_exe.py
+@File      :VideoShotsFile.py
 __version__ = '2.1.0'
 """
-import time
 
 import cv2
 import os
@@ -53,7 +52,7 @@ def draw_file(video_folder, output_folder, second):
                         # 构建输出图片文件路径
                         output_filename = f"{os.path.splitext(filename)[0]}_{second}s.jpg"
                         output_path = os.path.join(output_folder, output_filename)
-                        print('pass')
+
 
                         # 调用函数截取图片
                         extract_frame(video_path, output_path, second)
