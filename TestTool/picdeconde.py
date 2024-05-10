@@ -7,7 +7,7 @@ __version__ = '1.0.0'
 
 import base64
 
-pngPath = 'D:\\Android automation\\TestTool\\LoginPic.png'
+PngPath = 'D:\\Android automation\\TestTool\\LoginPic.png'
 
 
 def transform(picture_name):
@@ -23,7 +23,7 @@ def transform(picture_name):
 
 
 if __name__ == '__main__':
-    pics = [pngPath]
+    pics = [PngPath]
     for i in pics:
         transform(i)
     print("ok")

@@ -3,7 +3,7 @@
 # @Time      :2023/2/3 13:32
 # @Author    :risheng.chen@lango-tech.com
 # @File      :guitestpage.py
-__version__ = '1.0.0'
+__version__ = '2.0.0'
 
 import os
 import serial
@@ -19,7 +19,7 @@ RS232_Connect = {
     'Source_state': 'F6 4D 01 00 44 6F',  # 获取当前通道信号状态，01表示有信号，00无信号
 }
 
-TestManageSystem = '集成测试系统'
+TestManageSystem = '集成测试系统 v2.0.0'
 User = '用户名'
 PassWord = '密码'
 Login = '登录'
@@ -110,6 +110,6 @@ if __name__ == "__main__":
             print('没有设备')
         else:
             lines = len(devices)
-            print('存在{}个adb设备'.format(lines))
+            print(f'存在{lines}个adb设备')
 
 

@@ -7,8 +7,8 @@ __version__ = '1.0.0'
 
 import pynput
 import pynput.mouse
-import threading
 import time
+from pynput.mouse import Controller, Button
 
 
 def waite():
@@ -44,3 +44,5 @@ def listen_mouse_click():
                         (event.x, event.y)))
                     print(str(event.dy) + '   ' + str(event.dx))
 
+if __name__ == '__main__':
+    listen_mouse_click()

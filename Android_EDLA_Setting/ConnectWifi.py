@@ -40,7 +40,7 @@ class ConnectWifiForIPV4(object):
         time.sleep(1)
 
 
-    def find_text(self, text, swipe=True):
+    def find_text(self, text:str, swipe=True) -> bool:
         """
         查找页面元素
         :param text:需要找的元素名称
@@ -83,7 +83,7 @@ class ConnectWifiForIPV4(object):
             return False
 
 
-    def set_connect_wifi(self):
+    def set_connect_wifi(self) -> bool:
         """
         set_connect_wifi:连接无线网络
         :return: True or False

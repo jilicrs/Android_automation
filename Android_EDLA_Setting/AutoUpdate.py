@@ -56,7 +56,7 @@ class RktoolsUpdateFirmware(object):
 
 
 
-    def AppStart(self, start=True):
+    def AppStart(self, start=True) -> None:
         """
         AppStart:启动RK升级工具
         :param start:
@@ -70,10 +70,9 @@ class RktoolsUpdateFirmware(object):
                 print(f'app running, PID:{app}')
                 break
             else:
-
                 continue
 
-    def MonitorBootLoader(self):
+    def MonitorBootLoader(self) -> bool:
         """
         MonitorBootLoader:监听设备进入boot loader状态
         :return:
@@ -103,7 +102,7 @@ class RktoolsUpdateFirmware(object):
 
 
 
-    def MonitorUpdateResult(self):
+    def MonitorUpdateResult(self) -> bool:
         """
         MonitorUpdateResult:监听设备升级是否完成并提示找到一个adb设备
         :return:
@@ -127,7 +126,7 @@ class RktoolsUpdateFirmware(object):
                 return True
 
 
-    def SaveScreenShot(self):
+    def SaveScreenShot(self) -> bool:
         """
         SaveScreenShot:升级完成之后将RK的升级结果进行截图保存
         :return:
@@ -159,7 +158,7 @@ class RktoolsUpdateFirmware(object):
             return False
 
 
-    def ExtractTextFromImage(self):
+    def ExtractTextFromImage(self) -> bool:
         """
         ExtractTextFromImage:文字识别保存的RK截图中文字信息是否存在升级成功的字样
         :return:
@@ -175,7 +174,7 @@ class RktoolsUpdateFirmware(object):
             return False
 
 
-    def RkToolsUpdate(self):
+    def RkToolsUpdate(self) -> bool:
         """
         RkToolsUpdate:RK工具升级操作
         :return:
@@ -251,7 +250,8 @@ def AutoUpdate():
 
 
 
-
+if __name__ == '__main__':
+    RktoolsUpdateFirmware().AppStart()
 
 
 

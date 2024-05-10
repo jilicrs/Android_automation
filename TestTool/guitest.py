@@ -60,7 +60,7 @@ class ToolsPage(object):
         return send_hex
 
 
-# 编码图片/登录
+# 解码图片/登录
 tmp = open('login_pic.png', 'wb')
 tmp.write(base64.b64decode(pic))
 tmp.close()
@@ -149,7 +149,7 @@ layout1 = [
 
 # 主layout====================================================================================================
 layout = [
-    [pg.Frame('config', layout=config, pad=(10, 20), title_color='blue', title_location='n', size=(200, 350),
+    [pg.Frame('config.ini', layout=config, pad=(10, 20), title_color='blue', title_location='n', size=(200, 350),
               border_width=5, tooltip=None),
      pg.Multiline("", size=(300, 26), key="_OUTPUT_", disabled=True, font=('楷体', 10), tooltip=None,
                   border_width=2)],

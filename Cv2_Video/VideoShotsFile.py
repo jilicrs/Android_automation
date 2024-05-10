@@ -4,14 +4,17 @@
 @Time      :2024/1/19 15:20
 @Author    :risheng.chen@lango-tech.cn
 @File      :VideoShotsFile.py
-__version__ = '2.1.0'
+__version__ = '3.1.0'
 """
 
 import cv2
 import os
+import datetime
+import PySimpleGUI as sg
+from Cv2_Video.Cv2Thread import MyThread
 
 
-def extract_frame(video_path, output_path, second):
+def extract_frame(video_path, output_path, second, windows):
     # 打开视频文件
     vidcap = cv2.VideoCapture(video_path)
 
@@ -23,15 +26,19 @@ def extract_frame(video_path, output_path, second):
 
     if success:
         cv2.imencode('.png', image)[1].tofile(output_path)
+        windows.update(datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S:') +
+                       '正在截图!!')
         print(f"成功截取视频 {video_path} 中的第 {second} 秒的帧，并保存到 {output_path}。")
     else:
+        windows.update(datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S:') +
+                       '截图失败!!')
         print(f"截取视频 {video_path} 中的第 {second} 秒的帧失败。")
 
     # 释放资源
     vidcap.release()
 
 
-def draw_file(video_folder, output_folder, second):
+def draw_file(video_folder, output_folder, second, windows) -> bool:
     # 遍历文件夹内容，root：文件夹根目录， dirs：文件夹子目录，files：文件夹内所有文件
     for root, dirs, files in os.walk(video_folder):
         if not files:
@@ -55,7 +62,7 @@ def draw_file(video_folder, output_folder, second):
 
 
                         # 调用函数截取图片
-                        extract_frame(video_path, output_path, second)
+                        extract_frame(video_path, output_path, second, windows)
                 return True
             else:
                 print('*****************文件夹内没有MP4文件*****************')
@@ -64,8 +71,21 @@ def draw_file(video_folder, output_folder, second):
 
 
 
+def start_draw_file(video_folder, output_folder, second, windows) -> str:
+    """
+    start_draw_file：定义接口单独线程，防止主函数在运行接口时阻塞主线程
+    :param video_folder: 需要截图得文件夹
+    :param output_folder: 保存到指定文件夹
+    :param second: 秒（int）
+    :param windows: 信息输出窗口
+    :return:
+    """
+    thread = MyThread(target=draw_file, arges=(video_folder, output_folder, second, windows))
+    thread.start()
+    result = thread.get_result()
 
-
+    sg.popup_notify('ScreenCap!', location=(700, 500))
+    return result
 
 
 

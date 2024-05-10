@@ -5,12 +5,11 @@
 # @File      :Contrast_Screenshot.py
 __version__ = '1.0.0'
 
-import time
 from functools import reduce
-from PIL import Image
 import math
 import operator
-
+from PIL import Image
+import imagehash
 
 def compare(pic1, pic2):
     """
@@ -38,9 +37,29 @@ def compare(pic1, pic2):
     # return differ
 
 
-if __name__ == '__main__':
-    test1 = input("输入图片需要对比图片路径：").replace('\\', '/', 100)
-    # D:\screenshots\screen.png
-    test2 = input("输入对比图片的路径：").replace('\\', '/', 100)
-    # D:\screen.png
-    print(compare(test1, test2))
+
+def HashContrast(path1=input('图片1路径：'), path2=input('图片2路径：')):
+    """
+    HashContrast:感知哈希对比
+    :param path1:
+    :param path2:
+    :return:True or False
+    """
+    image1 = Image.open(path1)
+    image2 = Image.open(path2)
+
+    # 转换为灰度图
+    gray_image1 = image1.convert("L")
+    gray_image2 = image2.convert("L")
+
+    # 感知哈希对比
+    hash1 = imagehash.phash(gray_image1)
+    hash2 = imagehash.phash(gray_image2)
+
+    hash_diff = hash1 - hash2
+    if hash_diff == 0:
+        print(f'图片对比结果一致,hash值差异{hash_diff}')
+        return True
+    else:
+        print(f"图片对比结果不一致，hash值差异{hash_diff}")
+        return False

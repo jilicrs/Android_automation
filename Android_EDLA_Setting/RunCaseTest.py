@@ -26,7 +26,7 @@ def RunCase():
     # 自动升级
     if AutoUpdate():
         for i in range(151):
-            sys.stdout.write('\r' + f'等待开机:{i}')
+            sys.stdout.write('\r' + f'等待开机:{i}' + '\r')
             time.sleep(1)
             continue
         # 跳过开机向导

@@ -7,6 +7,7 @@ __version__ = '1.0.0'
 
 import serial
 import serial.tools.list_ports
+import time
 
 RS232_Connect = {
     'power_off': 'AA BB CC 01 01 00 02 DD EE FF',  # 关机
@@ -43,7 +44,19 @@ RS232_Connect = {
     'vol+': 'AA BB CC 07 03 00 0A DD EE FF',
     'vol-': 'AA BB CC 07 41 00 48 DD EE FF',
     'Get_Firmware_Version_Scaler': 'F6 03 01 00 FA 6F',
+    'get_panel': '89 60 29 ED',
+
+    'iiyama_poweroff' : 'A6 01 00 00 00 04 01 18 01 BB',
+    'iiyama_poweron' : 'A6 01 00 00 00 04 01 18 02 B8',
+    'DP' : 'F6 30 01 14 3B 6F',
+
+    "打开背光": "A6 01 00 00 00 04 01 72 01 D1",
+
+    "关闭背光":"A6 01 00 00 00 04 01 72 00 D0"
 }
+
+# 波特率
+set_baud_rate = 9600
 
 
 def get_serial_comport():
@@ -60,8 +73,18 @@ def get_serial_comport():
             return list(comport)[0]
 
 
-ser = serial.Serial(port=get_serial_comport(), baudrate=9600, timeout=3)
+ser = serial.Serial(port=get_serial_comport(), baudrate=set_baud_rate, timeout=3)
 
+def get_data():
+    """
+    get_data:返回串口数据打印到终端
+    :return: data
+    """
+    while True:
+        data = ser.readline().decode('utf-8').strip()
+        if data:
+            print('Received data:', data)
+        time.sleep(0.1)
 
 def close_serial_comport():
     """
@@ -69,7 +92,7 @@ def close_serial_comport():
     :return: True or False
     """
     ser.close()
-    if ser.isOpen():
+    if ser.is_open:
         return False
     else:
         return True
@@ -85,8 +108,9 @@ def serial_sent_hex(command):
     """
     var = bytes.fromhex(RS232_Connect["%s" % command])
     ser.write(var)
-    data = ser.read(10)
+    data = ser.read(12)
     data = str(data, encoding="utf-8")
+    print(data)
     return data
 
 

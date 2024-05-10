@@ -4,15 +4,15 @@
 @Time      :2024/1/19 16:10
 @Author    :risheng.chen@lango-tech.cn
 @File      :Cv2ForGUI.py
-__version__ = '3.0.0'
+__version__ = '3.1.0'
 """
 
 import base64
 import os
 import PySimpleGUI as sg
 import datetime
-from Cv2_Video.VideoShotsSeconds import cut_video
-from Cv2_Video.VideoShotsFile import draw_file
+from Cv2_Video.VideoShotsSeconds import cut_video, start_cut_video
+from Cv2_Video.VideoShotsFile import draw_file, start_draw_file
 from Cv2_Video.android_ico import img as pic
 from Cv2_Video.fromlogo_png import img as pic1
 # from Cv2_Video.cvtelogo_png import img as pic1
@@ -42,7 +42,7 @@ front_layout = [
                  pad=(155, 1), relief='ridge', background_color='black', text_color='yellow')],
         [sg.Text(text='3.新增文件间隔截取指定帧数', font=('宋体', 10), size=(25, 1), key='_SCREEN_TIME_', border_width=3,
                  pad=(155, 1), relief='ridge', background_color='black', text_color='yellow')],
-        [sg.Text(text='4.优化系统逻辑', font=('宋体', 10), size=(15, 1), key='_SCREEN_TIME_', border_width=3,
+        [sg.Text(text='4.优化系统逻辑(Window crash)', font=('宋体', 10), size=(27, 1), key='_SCREEN_TIME_', border_width=3,
                  pad=(155, 1), relief='ridge', background_color='black', text_color='yellow')],
         [sg.ProgressBar(200, size=(30, 20), orientation='h', pad=(155, 1), key='progressbar')]
 
@@ -82,7 +82,7 @@ sg.theme('LightGrey1')
 window_f = sg.Window('', no_titlebar=True, layout=front_layout, size=(600, 430), background_color='white',
                      grab_anywhere=True, transparent_color='#add123')
 
-window = sg.Window('视频截图工具 v3.0', layout=layout, size=(800, 480), resizable=True, icon='decode1.ico',
+window = sg.Window('视频截图工具 v3.1', layout=layout, size=(800, 480), resizable=True, icon='decode1.ico',
                    transparent_color='#add123')
 
 Progress_Bar = window_f['progressbar']
@@ -116,16 +116,15 @@ def main():
             elif event == '_START_DRAW_':
                     if values['_OPENFILE_TEXT_'] and values['_SAVEFILE_TEXT_'] and values['_TIME_INPUT_']:
                         if values['_TIME_INPUT_'].isnumeric():
-                            if draw_file(video_folder=values['_OPENFILE_TEXT_'],
-                                         output_folder=values['_SAVEFILE_TEXT_'],
-                                         second=int(values['_TIME_INPUT_'])):
-                                window['_OUTPUT_'].update(datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S:') +
-                                                      '截图成功!!')
-                                sg.popup_notify('ScreenCap done!', location=(700, 500))
+                            start_draw_file(video_folder=values['_OPENFILE_TEXT_'],
+                                            output_folder=values['_SAVEFILE_TEXT_'],
+                                            second=int(values['_TIME_INPUT_']),
+                                            windows=window['_OUTPUT_'])
 
-                            else:
-                                window['_OUTPUT_'].update(datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S:') +
-                                                      '截图失败!!')
+                            window['_OUTPUT_'].update(datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S:') +
+                                                  '截图完成!!')
+                            sg.popup_notify('ScreenCap done!', location=(700, 500))
+
                         else:
                             sg.popup_ok('请输入单位（s），每个视频的指定帧数!', title='warning ', icon='decode1.ico',
                                         grab_anywhere=True)
@@ -150,16 +149,13 @@ def main():
             elif event == '_START_DRAW_MORE_':
                 if values['_OPENFILE_TEXT_'] and values['_SAVEFILE_TEXT_'] and values['_TIME_INPUT_']:
                     if values['_TIME_INPUT_'].isnumeric():
-                        if cut_video(video_path=values['_OPENFILE_TEXT_'] + '\\',
-                                     f_save_path=values['_SAVEFILE_TEXT_'] + '\\',
-                                     time_interval=int(values['_TIME_INPUT_'])):
-                            window['_OUTPUT_'].update(datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S:') +
-                                                      '截图成功!!')
-                            sg.popup_notify('ScreenCap done!', location=(700, 500))
+                        start_cut_video(video_path=values['_OPENFILE_TEXT_'] + '\\',
+                                        f_save_path=values['_SAVEFILE_TEXT_'] + '\\',
+                                        time_interval=int(values['_TIME_INPUT_']), windows=window['_OUTPUT_'])
 
-                        else:
-                            window['_OUTPUT_'].update(datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S:') +
-                                                      '截图失败!!')
+                        window['_OUTPUT_'].update(datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S:') +
+                                                  '截图完成!!')
+                        sg.popup_notify('ScreenCap done!', location=(700, 500))
                     else:
                         sg.popup_ok('请输入单位（s），每个视频间隔s截图!', title='warning ', icon='decode1.ico',
                                     grab_anywhere=True)
@@ -194,21 +190,6 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

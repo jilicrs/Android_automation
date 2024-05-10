@@ -29,7 +29,6 @@ class SkipBootWizardAndFactoryReset(object):
     跳过开机向导与恢复出厂设置
     """
 
-
     def __init__(self, IP = devices,
                  SAVE_PATH = ConfigSavePath()):
         self.ip = IP

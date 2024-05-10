@@ -5,18 +5,22 @@
 # @File      :ProwiseTest.py
 __version__ = '1.0.0'
 
-import os
-import datetime
-import uiautomator2 as u2
+import subprocess
+import time
 
-d = u2.connect_adb_wifi('192.168.5.197')
-StartTest = int(input("输入开始测试次数:"))
 
-while True:
-    os.system('adb connect 192.168.5.197')
-    NowTime = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
-    os.system('adb -s 192.168.5.197 shell input tap 132 636')
-    print('%s:第{}次点击'.format(StartTest) % NowTime)
-    StartTest += 1
+log = 'D:\\logs\\test.log'
+
+connect = subprocess.Popen('adb devices', shell=True, stdout=subprocess.PIPE,
+                           universal_newlines=True, encoding='utf-8')
+d = connect.stdout.read()
+
+if '192.168.123.155' in d:
+    print(d)
+else:
+    print('连接失败')
+
+
+
 
 

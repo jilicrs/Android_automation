@@ -6,54 +6,18 @@
 __version__ = '1.0.0'
 
 import datetime
-import platform
 import re
-import uiautomator2 as u2
-import os
 import time
 from Logger.getlogger import Logging
+from BasePage.DeviceConnect import DeviceConnect
 
-device = str(input('输入测试设备IP：'))
-
-
-class AdbConnect(object):
-    """
-    ADB_connect:此方法用于连接整机设备
-    """
-    d = u2.connect_adb_wifi(device)
-    print(d.info)
-    print(d.device_info)
-
-    os.system('adb --version')
-    os.system('adb devices')
-    devices = os.popen('adb devices').read()
-
-    def __init__(self, devices_id=''):
-        self.__devices_id = devices_id
-        self.system = platform.system()
-        self.__find = ''
-        self._command = ''
-        self.__get__find()
-
-    def __get__find(self):
-        """判断系统类型：windows使用findstr
-        Linux使用grep"""
-        if self.system == "Windows":
-            self.__find = 'findstr'
-        else:
-            self.__find = 'grep'
-
-    def connection_devices(self):
-        """连接指定设备"""
-        if self.__devices_id == device:
-            return
-        self.__devices_id = "-s %s" % self.__devices_id
-        print(self.d.device_info())
 
 
 class BasePage(object):
     def __init__(self):
-        self.device = AdbConnect().d
+        self.device = DeviceConnect().ConnectDeviceForWifi()
+        self.time = time
+        self.datetime = datetime
 
     def app_current(self):
         """
@@ -90,7 +54,7 @@ class BasePage(object):
         :return:
         """
         clear = self.device.app_clear(packages_name)
-        Logging().getlogger().info('{} app is clear'.format(packages_name))
+        Logging().getloger().info('{} app is clear'.format(packages_name))
         return clear
 
     def app_wait(self, packages_name):
@@ -106,8 +70,8 @@ class BasePage(object):
         GetErrorLog:方法用于测试过程中出现异常时自动到处log到指定目录
         :return:
         """
-        log_time = time.strftime("%Y-%m-%d %H:%m:%S", time.localtime(),)
-        log_file = 'debug_log' + log_time + '.log'
+        log_time = self.time.strftime("%Y-%m-%d %H:%m:%S", self.time.localtime(),)
+        log_file = 'error_log' + log_time + '.log'
         log = r'adb logcat > D:\Android automation\Logger\{}'.format(log_file)
         return log
 
@@ -116,14 +80,17 @@ class BasePage(object):
         now_time:方法用于获取当前时间戳
         :return:
         """
-        return time.asctime()
+        NowTime = self.time.asctime()
+        print(NowTime)
+        return NowTime
 
     def time(self):
         """
         time:显示当前时间年月日分秒
         :return:
         """
-        Now_Time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        Now_Time = self.datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        print(Now_Time)
         return Now_Time
 
     def click(self, element):
@@ -143,13 +110,6 @@ class BasePage(object):
         Logging().getloger().save_log('auto_d:{}x={}, y={}'.format("点击坐标：", x, y))
         test = self.device.click(x, y)
         return test
-
-
-
-
-
-
-
 
 
 

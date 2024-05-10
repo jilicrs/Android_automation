@@ -6,7 +6,6 @@
 @File      :UsbSwitch.py
 __version__ = '1.0.0'
 """
-import time
 
 import serial
 import serial.tools.list_ports
@@ -54,8 +53,8 @@ def CloseComport():
 def SentHex(command):
     """
     serial_sent_hex:
-    bytes.fromhex()使用这个函数进行数据转换，可以把16进制的数值转换字节数据
-    (即比特流，字符串与比特流间还可以用encode（）和decode（）进行编解码)字符串与比特流间还可以用encode
+        bytes.fromhex()使用这个函数进行数据转换，可以把16进制的数值转换字节数据
+        (即比特流，字符串与比特流间还可以用encode（）和decode（）进行编解码)字符串与比特流间还可以用encode
     :param command: RS232
     :return: data: 获取指令的返回值，并且进行类型转换，转换为字符串后便可以进行字符串对比，因而便可以根据返回值进行判断是否执行特定功能
     """

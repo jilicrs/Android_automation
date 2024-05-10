@@ -9,13 +9,14 @@ import threading
 from ProwiseSourceTouch.MonitorMouse import listen_mouse_click
 from ProwiseSourceTouch.MonitorUSB import monitor_disk
 
-
 class MyThread(threading.Thread):
-    def __init__(self, target=None, arges=()):
+    def __init__(self, target=None, arges=(), name=None, kwargs=None):
         super(MyThread, self).__init__()
         self.result = None
         self.func = target
         self.arges = arges
+        self.name = str(name)
+        self.kwargs = kwargs
 
     def run(self):
         self.result = self.func(*self.arges)

@@ -1,16 +1,34 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from alive_progress import alive_bar
+import time
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+
+def file_Byte_comparison(file_1, file_2):
+    with open(file_1, 'rb') as f1, open(file_2, 'rb') as f2:
+        byte1 = f1.read(1)
+        byte2 = f2.read(1)
+    if byte1 == byte2:
+        result = True
+    else:
+        result = False
+
+    print(result)
+    return result
 
 
-# Press the green button in the gutter to run the script.
+def progress_bar():
+    with alive_bar(100, force_tty=True) as bar:
+        for i in range(100):
+            time.sleep(0.01)
+            bar(1)
+
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    # file_Byte_comparison(input('文件1路径：'), input('对比文件2路径：'))
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    progress_bar()
+
+
+
+
+

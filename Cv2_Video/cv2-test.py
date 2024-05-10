@@ -33,26 +33,6 @@ def extract_frame(video_path, output_path, second):
     vidcap.release()
 
 
-# # 指定视频文件夹路径
-# video_folder = "D:\\Android automation\\Cv2_Video\\2024011815"
-# # 指定输出图片文件夹路径
-# output_folder = "D:\\Android automation\\Cv2_Video\\output"
-# # 指定要截取的时间点（秒数）
-# second = 11
-
-# 遍历视频文件夹中的视频文件
-# for filename in os.listdir(video_folder):
-#     if filename.endswith(".mp4"):
-#         # 构建视频文件路径
-#         video_path = os.path.join(video_folder, filename)
-#
-#         # 构建输出图片文件路径
-#         output_filename = f"{os.path.splitext(filename)[0]}_{second}s.jpg"
-#         output_path = os.path.join(output_folder, output_filename)
-#
-#         # 调用函数截取图片
-#         extract_frame(video_path, output_path, second)
-
 
 if __name__ == '__main__':
     test1 = '2024011716'

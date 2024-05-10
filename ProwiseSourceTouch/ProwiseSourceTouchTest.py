@@ -8,7 +8,7 @@ __version__ = '1.0.0'
 import sys
 import datetime
 import time
-from ProwiseSourceTouch.MonitorMicarray import monitor_micarray
+from ProwiseSourceTouch.MonitorMicarray import Monitor_MicArray
 from BasePage.Rs232_Connect import serial_sent_hex
 from ProwiseSourceTouch.MonitorUSB import monitor_disk
 from ProwiseSourceTouch.MonitorMouse import listen_mouse_click
@@ -64,7 +64,7 @@ if __name__ == '__main__':
                     # 创建mouse_click_thread、mic_device_thread 和 usb_device_thread 线程对象
                     mouse_click_thread = MyThread(target=listen_mouse_click)
                     usb_device_thread = MyThread(target=monitor_disk)
-                    mic_device_thread = MyThread(target=monitor_micarray)
+                    mic_device_thread = MyThread(target=Monitor_MicArray)
 
                     # 启动mouse_click_thread 和 usb_device_thread 线程
                     mouse_click_thread.start()

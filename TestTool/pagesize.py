@@ -33,9 +33,9 @@ __version__ = '1.0.0'
 #         print("%s have been resized!" % pic_new_path)
 
 
-# import cv2
+# import Cv2_Video
 # # 原始图像读取
-# image = cv2.imread("C:\\Users\\lg\\Desktop\\11111\\touxiang2.jpg")
+# image = Cv2_Video.imread("C:\\Users\\lg\\Desktop\\11111\\touxiang2.jpg")
 # # 获取原始图像宽高
 # height, width = image.shape[0], image.shape[1]
 # print(width, height)
@@ -48,12 +48,12 @@ __version__ = '1.0.0'
 # # # 获得相应等比例的图像宽度
 # # width_size = int(width/scale)
 # # print("等比例缩放后的宽：",width_size)
-# image_resize = cv2.resize(image, (sizi1, size))
+# image_resize = Cv2_Video.resize(image, (sizi1, size))
 # # 这里image_resize用来盛放修改后的结果，
 #
 # # 将image_resize写入jpg格式的文件
 # import os
-# cv2.imwrite('C:\\Users\\lg\\Desktop\\11111\\xiugai\\xiugai1.jpg', image_resize)
+# Cv2_Video.imwrite('C:\\Users\\lg\\Desktop\\11111\\xiugai\\xiugai1.jpg', image_resize)
 
 
 # import os
@@ -84,7 +84,7 @@ __version__ = '1.0.0'
 # pilConvertJPG(path)
 
 
-import cv2
+import Cv2_Video
 import matplotlib.pyplot as plt
 import os
 import re
@@ -97,7 +97,7 @@ PATH = r'C:\Users\lg\Desktop\11111'
 
 
 def resizeImage(file, NoResize):
-    image = cv2.imread(file, cv2.IMREAD_COLOR)
+    image = Cv2_Video.imread(file, Cv2_Video.IMREAD_COLOR)
     # print(type(image))
 
     # 如果type(image) == 'NoneType',会报错,导致程序中断,所以这里先跳过这些图片,
@@ -106,9 +106,9 @@ def resizeImage(file, NoResize):
     if image is None:
         NoResize += [str(file)]
     else:
-        resizeImg = cv2.resize(image, (512, 384))
-        cv2.imwrite(file, resizeImg)
-        cv2.waitKey(100)
+        resizeImg = Cv2_Video.resize(image, (512, 384))
+        Cv2_Video.imwrite(file, resizeImg)
+        Cv2_Video.waitKey(100)
 
 
 def resizeAll(root):

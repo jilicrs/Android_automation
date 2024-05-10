@@ -5,12 +5,9 @@
 # @File      :MonitorUSB.py
 __version__ = '1.0.0'
 
-import threading
 import time
 import psutil
 import datetime
-import ctypes
-import inspect
 
 # 获得cpu的个数
 cpu = psutil.cpu_count()

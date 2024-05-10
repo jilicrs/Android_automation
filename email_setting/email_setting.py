@@ -33,7 +33,7 @@ class SendEmail(object):
         message['From'] = Header('Test the robot<771109694@qq.com>')
         # 收件人昵称和地址
         message['To'] = Header('陈日升<risheng.chen@lango-tech.cn>')
-        message['To'] = Header('陈芳微<fangwei.chen@lango-tech.cn>')
+        # message['To'] = Header('<YinTing@nmail.lango-tech.com>')
         # 抄送人昵称和地址
         message['Cc'] = Header('')
         message['Cc'] = Header('')
@@ -54,7 +54,7 @@ if __name__ == '__main__':
                                     '{}广州市黄浦区{}自动发送邮箱测试执行, 来自朗国第一帅《黄少》'.
                            format(datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S:'),
                                   datetime.datetime.now().strftime('%m%d')),
-                           to_address=('<risheng.chen@lango-tech.cn>',
+                           to_address=('<risheng.chen@lango-tech.cn>'
                                       ))
 
 

@@ -1,6 +1,19 @@
+"""
+!/usr/bin/env python
+-*- coding:utf-8 -*-
+@Time      :2024/1/19 15:20
+@Author    :risheng.chen@lango-tech.cn
+@File      :VideoShotsSeconds.py
+__version__ = '2.2.0'
+"""
+
+
 import base64
 import os
 import cv2
+import datetime
+import PySimpleGUI as sg
+from Cv2_Video.Cv2Thread import MyThread
 
 
 def encode_image(image_path, output_path):
@@ -19,7 +32,7 @@ def decode_image(encode_path, output_path):
 
 
 
-def cut_video(video_path, f_save_path, time_interval):  # 截取视频中图片
+def cut_video(video_path, f_save_path, time_interval, windows):  # 截取视频中图片
     mask = 2
     frame_interval = 2
 
@@ -57,7 +70,8 @@ def cut_video(video_path, f_save_path, time_interval):  # 截取视频中图片
                                     cv2.imencode('.jpg', frame)[1].tofile(
                                         pic_path + file_name + '_' + str(round(c / frame_interval)) + '.jpg')
 
-
+                                    windows.update(datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S:') +
+                                                   '正在截图!!')
                                 cv2.waitKey(1)
                                 c = c + 1
                             elif mask == 2:
@@ -65,6 +79,8 @@ def cut_video(video_path, f_save_path, time_interval):  # 截取视频中图片
                                     cv2.imencode('.jpg', frame)[1].tofile(
                                         pic_path + file_name + '_' + str(round(c / fps)) + '.jpg')
                                     print(file_name + '_' + str(round(c / fps)) + '.jpg')
+                                    windows.update(datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S:') +
+                                                   '正在截图!!')
                                 cv2.waitKey(1)
                                 c = c + 1
                         else:
@@ -78,7 +94,21 @@ def cut_video(video_path, f_save_path, time_interval):  # 截取视频中图片
 
 
 
+def start_cut_video(video_path, f_save_path, time_interval, windows):
+    """
+    start_cut_video:接口功能设置单独线程，防止执行时主函数由于窗口更新二而导致程序崩溃
+    :param video_path:
+    :param f_save_path:
+    :param time_interval:
+    :param windows:
+    :return:
+    """
+    my_thread = MyThread(target=cut_video, arges=(video_path, f_save_path, time_interval, windows))
+    my_thread.start()
+    result = my_thread.get_result()
 
+    sg.popup_notify('ScreenCap!', location=(700, 500))
+    return result
 
 
 
